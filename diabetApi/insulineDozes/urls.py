@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path("", views.dozesApi),
-    path("<int:id>/", views.dozesApi)
+    path("<int:id>", views.dozesApi)
 ]
