@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'insulineDozes.apps.InsulinedozesConfig',
+    'glucoseLevelApp.apps.GlucoselevelappConfig',
     'rest_framework']
 
 MIDDLEWARE = [
