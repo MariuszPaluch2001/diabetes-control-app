@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'insulineDozes.apps.InsulinedozesConfig',
     'glucoseLevelApp.apps.GlucoselevelappConfig',
+    'mealApp.apps.MealappConfig',
     'rest_framework']
 
 MIDDLEWARE = [
