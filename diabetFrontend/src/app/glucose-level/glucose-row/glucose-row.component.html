@@ -1,1 +1,21 @@
-<p>glucose-row works!</p>
+<div
+  class="glucose-row"
+  [style.background-color]="
+    glucoseSample.value < glucoseNorms.Too_Low
+      ? rowColors.Low
+      : glucoseSample.value < glucoseNorms.Norm
+      ? rowColors.Norm
+      : glucoseSample.value < glucoseNorms.High
+      ? rowColors.High
+      : rowColors.Too_High
+  "
+>
+  <br />
+  <p class="glucose-timestamp">
+    Data pomiaru: {{ glucoseSample.timestamp | date : "hh:mm:ss a" }}
+  </p>
+  <p class="glucose-level">
+    Wartość pomiaru: {{ glucoseSample.value }} {{ glucoseSample.unit }}
+  </p>
+  <br />
+</div>

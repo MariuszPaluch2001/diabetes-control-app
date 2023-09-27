@@ -1,1 +1,3 @@
-<p>glucose-level works!</p>
+<div *ngFor="let level of glucoseLevels">
+    <app-glucose-row [glucoseSample]="level"></app-glucose-row>
+</div>
