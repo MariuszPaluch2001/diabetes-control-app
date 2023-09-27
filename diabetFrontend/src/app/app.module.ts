@@ -7,6 +7,8 @@ import { InsulineDozesComponent } from './insuline-dozes/insuline-dozes.componen
 import { GlucoseLevelComponent } from './glucose-level/glucose-level.component';
 import { MealsComponent } from './meals/meals.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GlucoseRowComponent } from './glucose-level/glucose-row/glucose-row.component';
+import { GlucoseSampleComponent } from './glucose-level/glucose-sample/glucose-sample.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     InsulineDozesComponent,
     GlucoseLevelComponent,
     MealsComponent,
-    HomePageComponent
+    HomePageComponent,
+    GlucoseRowComponent,
+    GlucoseSampleComponent
   ],
   imports: [
     BrowserModule,
