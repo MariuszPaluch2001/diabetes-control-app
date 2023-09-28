@@ -14,11 +14,11 @@ import { GlucoseNorms } from 'src/app/enums/glucoseNorms';
 export class GlucoseSampleComponent implements OnInit {
   rowColors = Color;
   glucoseNorms = GlucoseNorms;
-  
+
   id: number = 0;
-  
+
   private sub!: Subscription;
-  
+
   glucoseLevel: glucoseLevel = {} as glucoseLevel;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
