@@ -14,3 +14,4 @@ class GlucoseLevel(models.Model):
         choices=Unit.choices,
         default=Unit.MGDL
     )
+

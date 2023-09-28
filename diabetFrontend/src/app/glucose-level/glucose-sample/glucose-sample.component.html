@@ -1,1 +1,21 @@
-<p>glucose-sample works!</p>
+<div
+  class="glucose-sample"
+  [style.background-color]="
+    glucoseLevel.value < glucoseNorms.Too_Low
+      ? rowColors.Low
+      : glucoseLevel.value < glucoseNorms.Norm
+      ? rowColors.Norm
+      : glucoseLevel.value < glucoseNorms.High
+      ? rowColors.High
+      : rowColors.Too_High
+  "
+>
+  <br />
+  <br />
+  <p class="glucose-p">
+    Timestamp: {{ glucoseLevel.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
+  </p>
+  <p class="glucose-p">Glucose level: {{ glucoseLevel.value }} {{ glucoseLevel.unit }}</p>
+  <br />
+  <br />
+</div>
