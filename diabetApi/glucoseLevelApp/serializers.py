@@ -3,9 +3,11 @@ from .models import GlucoseLevel
 
 
 class GlucoseLevelSerializer(serializers.ModelSerializer):
-    unit = serializers.CharField(
-        source='get_unit_display'
+    unitName = serializers.CharField(
+        source='get_unit_display',
+        read_only = True
     )
+    
     class Meta:
         model = GlucoseLevel
-        fields = ('Id', 'value', 'timestamp', 'unit')
+        fields = ('Id', 'value', 'timestamp', 'unit', 'unitName')

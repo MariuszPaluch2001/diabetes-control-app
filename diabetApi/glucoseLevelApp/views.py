@@ -42,3 +42,11 @@ def glucosesApi(request: HttpRequest, id: int = 0) -> JsonResponse:
         glucose = GlucoseLevel.objects.get(Id=id)
         glucose.delete()
         return JsonResponse("Deleted Successfully.", safe=False)
+
+@csrf_exempt
+def glucosesTypesApi(request: HttpRequest, id: int = 0) -> JsonResponse:
+
+    if request.method == 'GET':
+        unit_choices = [{'value': value, 'label': label} for value, label in GlucoseLevel.Unit.choices]
+        return JsonResponse(unit_choices, safe=False)
+    

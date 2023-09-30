@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { glucoseLevel } from 'src/app/models/glucose-level';
+import { GlucoseLevel } from 'src/app/models/glucose-level';
 import { Color } from './enums/colors';
 import { GlucoseNorms } from 'src/app/enums/glucoseNorms';
 
@@ -9,7 +9,7 @@ import { GlucoseNorms } from 'src/app/enums/glucoseNorms';
   styleUrls: ['./glucose-row.component.css'],
 })
 export class GlucoseRowComponent {
-  @Input() glucoseSample!: glucoseLevel;
+  @Input() glucoseSample!: GlucoseLevel;
   rowColors = Color;
   glucoseNorms = GlucoseNorms;
 }

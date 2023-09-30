@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path("", views.glucosesApi),
-    path("<int:id>", views.glucosesApi)
+    path("<int:id>", views.glucosesApi),
+    path("unit-choices", views.glucosesTypesApi),
 ]

@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
-import {
-  MatFormFieldModule,
-} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +15,8 @@ import { SaveFormComponent } from './glucose-level/save-form/save-form.component
 import { HomePageComponent } from './home-page/home-page.component';
 import { InsulineDozesComponent } from './insuline-dozes/insuline-dozes.component';
 import { MealsComponent } from './meals/meals.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,10 +37,11 @@ import { MealsComponent } from './meals/meals.component';
     MatInputModule,
     MatSelectModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

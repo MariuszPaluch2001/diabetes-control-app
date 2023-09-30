@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { glucoseLevel } from '../models/glucose-level';
+import { GlucoseLevel } from '../models/glucose-level';
 import { HttpClient } from '@angular/common/http';
+import { GlucoseLevelService } from './services/glucose-level.service';
 
 @Component({
   selector: 'app-glucose-level',
@@ -8,12 +9,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./glucose-level.component.css'],
 })
 export class GlucoseLevelComponent implements OnInit {
-  constructor(private http: HttpClient) {}
-  glucoseLevels: glucoseLevel[] = [];
+  constructor(private glucoseServive: GlucoseLevelService) {}
+  glucoseLevels: GlucoseLevel[] = [];
 
   ngOnInit(): void {
-    this.http
-    .get<glucoseLevel[]>('http://127.0.0.1:8000/glucoseLevels/')
+    this.glucoseServive
+    .getGlucoseLevels()
     .subscribe((data) => {
       this.glucoseLevels = data;
     });
