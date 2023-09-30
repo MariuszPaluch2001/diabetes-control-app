@@ -18,4 +18,11 @@
     Wartość pomiaru: {{ glucoseSample.value }} {{ glucoseSample.unitName }}
   </p>
   <br />
+  <a
+    class="glucose-sample-link"
+    [routerLink]="['/glucose-level/list/', glucoseSample.Id]"
+  >
+    <button mat-raised-button color="primary">Show sample</button>
+  </a>
+  <br /><br />
 </div>

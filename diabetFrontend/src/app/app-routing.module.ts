@@ -6,10 +6,11 @@ import { GlucoseSampleComponent } from './glucose-level/glucose-sample/glucose-s
 import { SaveFormComponent } from './glucose-level/save-form/save-form.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: 'home', component: HomePageComponent },
   { path: 'glucose-level/list', component: GlucoseLevelComponent },
   { path: 'glucose-level/list/:id', component: GlucoseSampleComponent },
   { path: 'glucose-level/save-form', component: SaveFormComponent },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

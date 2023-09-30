@@ -1,3 +1,11 @@
-<div *ngFor="let level of glucoseLevels">
+<div>
+  <h1 class="title-center">List of glucose samples</h1>
+  <a class="link-form" [routerLink]="['/glucose-level/save-form']">
+    <button mat-raised-button color="primary">Add new sample</button>
+  </a>
+  <br />
+  <br />
+  <div *ngFor="let level of glucoseLevels">
     <app-glucose-row [glucoseSample]="level"></app-glucose-row>
+  </div>
 </div>

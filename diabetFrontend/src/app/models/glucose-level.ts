@@ -1,5 +1,5 @@
 export interface GlucoseLevel {
-    id: string;
+    Id: string;
     value: number;
     timestamp: Date;
     unitName: string;
