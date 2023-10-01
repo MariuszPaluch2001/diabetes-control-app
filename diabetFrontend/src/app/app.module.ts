@@ -17,6 +17,8 @@ import { InsulineDozesComponent } from './insuline-dozes/insuline-dozes.componen
 import { MealsComponent } from './meals/meals.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InsulineRowComponent } from './insuline-dozes/insuline-row/insuline-row.component';
+import { InsulineSampleComponent } from './insuline-dozes/insuline-sample/insuline-sample.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     GlucoseRowComponent,
     GlucoseSampleComponent,
     SaveFormComponent,
+    InsulineRowComponent,
+    InsulineSampleComponent,
   ],
   imports: [
     BrowserModule,
