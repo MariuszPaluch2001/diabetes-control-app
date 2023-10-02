@@ -25,6 +25,15 @@
   width: 90%;
 }
 
+.form-title {
+  padding: 25px 25px 25px 25px;
+  text-align: center;
+}
+
 .button {
   width: 100%;
+}
+
+.text-area{
+  height: 200px;
 }
