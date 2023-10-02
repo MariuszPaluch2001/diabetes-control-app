@@ -1,1 +1,12 @@
-<p>insuline-dozes works!</p>
+<div>
+    <h1 class="title-center">List of insuline dozes</h1>
+    <a class="link-form" [routerLink]="['/insuline-doze/save-form']">
+      <button mat-raised-button color="primary">Add new sample</button>
+    </a>
+    <br />
+    <br />
+    <div *ngFor="let doze of insulineDozes">
+      <app-insuline-row [insulineSample]="doze"></app-insuline-row>
+    </div>
+  </div>
+  

@@ -1,22 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
-import { GlucoseLevelService } from '../services/glucose-level.service';
 import {
-  GlucoseLevel,
   GlucoseLevelPost,
   GlucoseLevelType,
 } from 'src/app/models/glucose-level';
+import { GlucoseLevelService } from '../services/glucose-level.service';
 @Component({
-  selector: 'app-save-form',
+  selector: 'app-glucose-save-form',
   templateUrl: './save-form.component.html',
   styleUrls: ['./save-form.component.css'],
 })
-export class SaveFormComponent implements OnInit {
+export class SaveGlucoseFormComponent implements OnInit {
   units: GlucoseLevelType[] = [];
 
   constructor(

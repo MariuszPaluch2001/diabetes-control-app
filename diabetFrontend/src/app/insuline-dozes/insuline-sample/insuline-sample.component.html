@@ -1,1 +1,13 @@
-<p>insuline-sample works!</p>
+<div class="glucose-sample">
+  <br />
+  <br />
+  <p class="glucose-p">
+    Data pomiaru: {{ insulineSample.timestamp | date : "hh:mm:ss a" }}
+  </p>
+  <p class="glucose-p">
+    Ilość jednostek: {{ insulineSample.units }} {{ insulineSample.typeName }}
+  </p>
+  <p class="glucose-p">Opis: {{ insulineSample.description }}</p>
+  <br />
+  <br />
+</div>
