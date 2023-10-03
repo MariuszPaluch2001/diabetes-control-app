@@ -7,7 +7,7 @@ import { Meal } from 'src/app/models/meal';
 @Component({
   selector: 'app-meal-sample',
   templateUrl: './meal-sample.component.html',
-  styleUrls: ['./meal-sample.component.css']
+  styleUrls: ['./meal-sample.component.css'],
 })
 export class MealSampleComponent {
   id: number = 0;
