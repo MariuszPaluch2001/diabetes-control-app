@@ -4,7 +4,9 @@
     Data pomiaru: {{ insulineSample.timestamp | date : "hh:mm:ss a" }}
   </p>
   <p class="glucose-p">
-    Ilość jednostek: {{ insulineSample.units }} ({{ insulineSample.typeName }})
+    Ilość jednostek: {{ insulineSample.units }} ({{
+      insulineSample.typeName | lowercase
+    }})
   </p>
   <p class="glucose-p">Opis: {{ insulineSample.description }}</p>
   <br />

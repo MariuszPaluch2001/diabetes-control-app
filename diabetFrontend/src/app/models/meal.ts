@@ -5,6 +5,7 @@ export interface Meal {
   description: string;
   dish: number;
   dish_name: string;
+  dish_unit: string;
 }
 
 export interface MealPost {

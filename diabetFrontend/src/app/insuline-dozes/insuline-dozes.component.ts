@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InsulineDoze } from '../models/insuline-doze';
 import { InsulineDozesService } from './services/insuline-dozes.service';
 
@@ -7,7 +7,7 @@ import { InsulineDozesService } from './services/insuline-dozes.service';
   templateUrl: './insuline-dozes.component.html',
   styleUrls: ['./insuline-dozes.component.css'],
 })
-export class InsulineDozesComponent {
+export class InsulineDozesComponent implements OnInit {
   constructor(private insulineServive: InsulineDozesService) {}
   insulineDozes: InsulineDoze[] = [];
 

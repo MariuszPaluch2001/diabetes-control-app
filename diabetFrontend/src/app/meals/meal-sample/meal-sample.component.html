@@ -1,1 +1,12 @@
-<p>meal-sample works!</p>
+<div class="meal-sample">
+  <br />
+  <p class="meal-p">
+    Pora posiłku: {{ mealSample.timestamp | date : "hh:mm:ss a" }}
+  </p>
+  <p class="meal-p">Nazwa posiłku: {{ mealSample.dish_name }}</p>
+  <p class="meal-p">
+    Ilość: {{ mealSample.quantity }} {{ mealSample.dish_unit }}
+  </p>
+  <p class="meal-p">Opis: {{ mealSample.description }}</p>
+  <br /><br />
+</div>
