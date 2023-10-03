@@ -16,7 +16,14 @@ class MealsList(APIView):
         meal_serializer = MealSerializer(meal, many=True)
         return JsonResponse(meal_serializer.data, safe=False)
 
-
+    def post(self, request: HttpRequest, format=None) -> JsonResponse:
+        meal_data = JSONParser().parse(request)
+        meal_serializer = MealSerializer(data=meal_data)
+        if meal_serializer.is_valid():
+            meal_serializer.save()
+            return JsonResponse("Save Successfully.", safe=False)
+        return JsonResponse(meal_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 class MealDetail(APIView):
 
     def get_object(self, id: int) -> Meal:
@@ -48,8 +55,8 @@ class MealDetail(APIView):
 
 class DishesList(APIView):
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
-        meal = Meal.objects.all()
-        meal_serializer = MealSerializer(meal, many=True)
+        meal = Dish.objects.all()
+        meal_serializer = DishSerializer(meal, many=True)
         return JsonResponse(meal_serializer.data, safe=False)
 
 
