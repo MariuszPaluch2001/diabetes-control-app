@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaveFormComponent } from './save-form.component';
+import { SaveDishFormComponent } from './save-form.component';
 
 describe('SaveFormComponent', () => {
-  let component: SaveFormComponent;
-  let fixture: ComponentFixture<SaveFormComponent>;
+  let component: SaveDishFormComponent;
+  let fixture: ComponentFixture<SaveDishFormComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SaveFormComponent]
+      declarations: [SaveDishFormComponent]
     });
-    fixture = TestBed.createComponent(SaveFormComponent);
+    fixture = TestBed.createComponent(SaveDishFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

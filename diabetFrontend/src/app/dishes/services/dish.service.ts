@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Dish } from 'src/app/models/dish';
+import { Dish, DishPost, DishUnitType } from 'src/app/models/dish';
 import { isLocalEnvironment } from 'src/app/utils/environmentType';
 import { LOCAL_API_URL, PRODUCTION_API_URL } from 'src/app/utils/urlApi';
 
@@ -21,7 +21,11 @@ export class DishService {
     return this.http.get<Dish[]>(`${this.API_URL}/mealApp/dishes/`);
   }
 
-  saveDish(doze: Dish): Observable<any> {
+  saveDish(doze: DishPost): Observable<any> {
     return this.http.post<Dish>(`${this.API_URL}/mealApp/dishes/`, doze);
+  }
+
+  getDishUnits(): Observable<DishUnitType[]> {
+    return this.http.get<DishUnitType[]>(`${this.API_URL}/mealApp/dishes/unit-names`);
   }
 }

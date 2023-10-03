@@ -11,7 +11,7 @@ export interface DishPost {
   name: string;
   carbohydrate_exchange: number;
   glycemic_index: number;
-  unitName: string;
+  unit: number;
   description: string;
 }
 
