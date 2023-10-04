@@ -12,6 +12,7 @@ import { DishSampleComponent } from './dishes/dish-sample/dish-sample.component'
 import { MealsComponent } from './meals/meals.component';
 import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { SaveDishFormComponent } from './dishes/save-form/save-form.component';
+import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'dish/save-form', component: SaveDishFormComponent },
   { path: 'meal/list', component: MealsComponent },
   { path: 'meal/list/:id', component: MealSampleComponent },
+  { path: 'meal/save-form', component: SaveMealFormComponent },
   { path: '**', redirectTo: 'home' },
 ];
 

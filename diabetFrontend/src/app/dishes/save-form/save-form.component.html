@@ -13,8 +13,7 @@
       <mat-error
         *ngIf="
           dishForm.controls!.name.invalid &&
-          (dishForm.controls!.name.dirty ||
-            dishForm.controls!.name.touched) &&
+          (dishForm.controls!.name.dirty || dishForm.controls!.name.touched) &&
           dishForm.controls!.name.errors!.required
         "
         >Field is required</mat-error

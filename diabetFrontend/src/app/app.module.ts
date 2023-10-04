@@ -26,6 +26,7 @@ import { DishSampleComponent } from './dishes/dish-sample/dish-sample.component'
 import { SaveDishFormComponent } from './dishes/save-form/save-form.component';
 import { MealRowComponent } from './meals/meal-row/meal-row.component';
 import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
+import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
     SaveDishFormComponent,
     MealRowComponent,
     MealSampleComponent,
+    SaveMealFormComponent
   ],
   imports: [
     BrowserModule,
