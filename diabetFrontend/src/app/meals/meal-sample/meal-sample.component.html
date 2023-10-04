@@ -1,0 +1,16 @@
+<div class="meal-sample">
+  <br />
+  <p class="meal-p">
+    Pora posiłku: {{ mealSample.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
+  </p>
+  <p class="meal-p">Nazwa posiłku: {{ mealSample.dish_name }}</p>
+  <p class="meal-p">
+    Ilość: {{ mealSample.quantity }} {{ mealSample.dish_unit }}
+  </p>
+  <p class="meal-p">
+    Wymienniki węglowodanowe: {{ dish.carbohydrate_exchange }}
+  </p>
+  <p class="meal-p">Indeks glikemiczny: {{ dish.glycemic_index }}</p>
+  <p class="meal-p">Opis: {{ mealSample.description }}</p>
+  <br /><br />
+</div>

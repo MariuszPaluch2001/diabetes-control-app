@@ -20,6 +20,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsulineRowComponent } from './insuline-dozes/insuline-row/insuline-row.component';
 import { InsulineSampleComponent } from './insuline-dozes/insuline-sample/insuline-sample.component';
 import { SaveInsulineFormComponent } from './insuline-dozes/save-form/save-form.component';
+import { DishesComponent } from './dishes/dishes.component';
+import { DishRowComponent } from './dishes/dish-row/dish-row.component';
+import { DishSampleComponent } from './dishes/dish-sample/dish-sample.component';
+import { SaveDishFormComponent } from './dishes/save-form/save-form.component';
+import { MealRowComponent } from './meals/meal-row/meal-row.component';
+import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
+import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +41,13 @@ import { SaveInsulineFormComponent } from './insuline-dozes/save-form/save-form.
     SaveInsulineFormComponent,
     InsulineRowComponent,
     InsulineSampleComponent,
+    DishesComponent,
+    DishRowComponent,
+    DishSampleComponent,
+    SaveDishFormComponent,
+    MealRowComponent,
+    MealSampleComponent,
+    SaveMealFormComponent
   ],
   imports: [
     BrowserModule,

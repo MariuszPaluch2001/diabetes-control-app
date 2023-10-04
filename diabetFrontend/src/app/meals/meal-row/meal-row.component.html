@@ -1,0 +1,14 @@
+<div class="meal-row">
+  <br />
+  <p class="meal-p">Pora posiłku: {{ meal.timestamp | date : "hh:mm:ss a" }}</p>
+  <p class="meal-p">Nazwa posiłku: {{ meal.dish_name }}</p>
+  <p class="meal-p">
+    Ilość: {{ meal.quantity }} {{ meal.dish_unit | lowercase }}
+  </p>
+  <p class="meal-p">Opis: {{ meal.description }}</p>
+  <br />
+  <a class="meal-sample-link" [routerLink]="['/meal/list/', meal.Id]">
+    <button mat-raised-button color="primary">Show sample</button>
+  </a>
+  <br /><br />
+</div>

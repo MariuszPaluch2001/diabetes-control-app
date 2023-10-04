@@ -1,0 +1,14 @@
+<div class="dish-row">
+  <br />
+  <p class="dish-p">Nazwa posiłku: {{ dish.name }}</p>
+  <p class="dish-p">Wymienniki węglowodanowe (WW): {{ dish.carbohydrate_exchange }}</p>
+  <p class="dish-p">
+    Indeks glikemiczny (IG): {{ dish.glycemic_index }}
+  </p>
+  <p class="dish-p">Opis: {{ dish.description }}</p>
+  <br />
+  <a class="dish-sample-link" [routerLink]="['/dish/list/', dish.Id]">
+    <button mat-raised-button color="primary">Show sample</button>
+  </a>
+  <br /><br />
+</div>

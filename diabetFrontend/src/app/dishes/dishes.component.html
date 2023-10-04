@@ -1,0 +1,11 @@
+<div>
+  <h1 class="title-center">List of dishes</h1>
+  <a class="link-form" [routerLink]="['/dish/save-form']">
+    <button mat-raised-button color="primary">Add new sample</button>
+  </a>
+  <br />
+  <br />
+  <div *ngFor="let dish of dishes">
+    <app-dish-row [dish]="dish"></app-dish-row>
+  </div>
+</div>
