@@ -1,43 +1,19 @@
-<h1>Home page</h1>
-<a>
-  <button
-    mat-raised-button
-    color="primary"
-    [routerLink]="['/glucose-level/list']"
-  >
-    Glucose samples list
-  </button>
-</a>
-<br />
-<br />
-<a>
-  <button
-    mat-raised-button
-    color="primary"
-    [routerLink]="['/insuline-doze/list']"
-  >
-    Insuline dozes list
-  </button>
-</a>
-<br />
-<br />
-<a>
-  <button
-    mat-raised-button
-    color="primary"
-    [routerLink]="['/dish/list']"
-  >
-    Dishes list
-  </button>
-</a>
-<br />
-<br />
-<a>
-  <button
-    mat-raised-button
-    color="primary"
-    [routerLink]="['/meal/list']"
-  >
-    Meals list
-  </button>
-</a>
+<div class="div-center">
+  <h1>Home page</h1>
+  <div class="div-margin">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <a [routerLink]="['/glucose-level/list']">
+        <mat-grid-tile>Glucose samples list</mat-grid-tile>
+      </a>
+      <a [routerLink]="['/insuline-doze/list']">
+        <mat-grid-tile>Insuline dozes list</mat-grid-tile>
+      </a>
+      <a [routerLink]="['/dish/list']">
+        <mat-grid-tile>Dishes list</mat-grid-tile>
+      </a>
+      <a [routerLink]="['/meal/list']">
+        <mat-grid-tile>Meals list</mat-grid-tile>
+      </a>
+    </mat-grid-list>
+  </div>
+</div>
