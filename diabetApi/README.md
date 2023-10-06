@@ -1,1 +1,7 @@
-Fill up later ...
+Project setup
+==============
+
+Project setup instructions here.
+
+mkdir -p local
+cp core/diabetApi/settings/templates/settings.dev.py ./local/settings.dev.py
