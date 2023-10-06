@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'insulineDozes.apps.InsulinedozesConfig',
-    'glucoseLevelApp.apps.GlucoselevelappConfig',
-    'mealApp.apps.MealappConfig',
+    'core.insulineDozes.apps.InsulinedozesConfig',
+    'core.glucoseLevelApp.apps.GlucoselevelappConfig',
+    'core.mealApp.apps.MealappConfig',
     'rest_framework']
 
 MIDDLEWARE = [
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'diabetApi.urls'
+ROOT_URLCONF = 'core.diabetApi.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'diabetApi.wsgi.application'
+WSGI_APPLICATION = 'core.diabetApi.wsgi.application'
 
 
 # Database
