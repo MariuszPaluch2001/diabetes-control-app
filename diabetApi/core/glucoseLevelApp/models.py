@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class GlucoseLevel(models.Model):
     Id = models.AutoField(primary_key=True)
     value = models.IntegerField(null=False, blank=False)
@@ -14,4 +15,3 @@ class GlucoseLevel(models.Model):
         choices=Unit.choices,
         default=Unit.MGDL
     )
-

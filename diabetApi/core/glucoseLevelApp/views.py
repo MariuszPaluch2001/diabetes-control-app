@@ -30,6 +30,7 @@ class GlucosesList(APIView):
             return JsonResponse("Save Successfully.", safe=False)
         return JsonResponse(glucose_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class GlucoseDetail(APIView):
 
     def get_object(self, id: int) -> GlucoseLevel:
@@ -42,7 +43,6 @@ class GlucoseDetail(APIView):
         glucose_level = self.get_object(id)
         glucose_serializer = GlucoseLevelSerializer(glucose_level)
         return JsonResponse(glucose_serializer.data, safe=False)
-
 
     def put(self, request: HttpRequest, format=None) -> JsonResponse:
         glucose_level_data = JSONParser().parse(request)

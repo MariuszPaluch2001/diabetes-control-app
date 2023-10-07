@@ -9,12 +9,14 @@ from .serializers import DozeSerializer
 
 # Create your views here.
 
+
 class InsulineTypes(APIView):
 
     def get(request: HttpRequest, id: int = 0) -> JsonResponse:
         unit_choices = [{'value': value, 'label': label}
                         for value, label in Doze.InsulineType.choices]
         return JsonResponse(unit_choices, safe=False)
+
 
 class InslulineDozesList(APIView):
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
@@ -29,7 +31,8 @@ class InslulineDozesList(APIView):
             doze_serializer.save()
             return JsonResponse("Save Successfully.", safe=False)
         return JsonResponse(doze_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
 class InsluineDozeDetail(APIView):
 
     def get_object(self, id: int) -> Doze:
