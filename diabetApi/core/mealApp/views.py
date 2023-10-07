@@ -11,6 +11,7 @@ from .serializers import DishSerializer, MealSerializer
 
 
 class MealsList(APIView):
+
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
         meal = Meal.objects.all()
         meal_serializer = MealSerializer(meal, many=True)
@@ -21,7 +22,7 @@ class MealsList(APIView):
         meal_serializer = MealSerializer(data=meal_data)
         if meal_serializer.is_valid():
             meal_serializer.save()
-            return JsonResponse("Save Successfully.", safe=False)
+            return JsonResponse('Save Successfully.', safe=False)
         return JsonResponse(meal_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -40,29 +41,28 @@ class MealDetail(APIView):
 
     def put(self, request: HttpRequest, format=None) -> JsonResponse:
         meal_data = JSONParser().parse(request)
-        meal = self.get_object(meal_data["Id"])
-        meal_serializer = MealSerializer(
-            meal, data=meal_data)
+        meal = self.get_object(meal_data['Id'])
+        meal_serializer = MealSerializer(meal, data=meal_data)
         if meal_serializer.is_valid():
             meal_serializer.save()
-            return JsonResponse("Updated Successfully.", safe=False)
+            return JsonResponse('Updated Successfully.', safe=False)
         return JsonResponse(meal_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request: HttpRequest, format=None) -> JsonResponse:
+    def delete(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         meal = self.get_object(id)
         meal.delete()
-        return JsonResponse("Deleted Successfully.", safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse('Deleted Successfully.', safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
 class DishUnits(APIView):
 
     def get(request: HttpRequest, id: int = 0) -> JsonResponse:
-        unit_choices = [{'value': value, 'label': label}
-                        for value, label in Dish.UnitName.choices]
+        unit_choices = [{'value': value, 'label': label} for value, label in Dish.UnitName.choices]
         return JsonResponse(unit_choices, safe=False)
 
 
 class DishesList(APIView):
+
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
         meal = Dish.objects.all()
         meal_serializer = DishSerializer(meal, many=True)
@@ -73,7 +73,7 @@ class DishesList(APIView):
         dish_serializer = DishSerializer(data=dish_data)
         if dish_serializer.is_valid():
             dish_serializer.save()
-            return JsonResponse("Save Successfully.", safe=False)
+            return JsonResponse('Save Successfully.', safe=False)
         return JsonResponse(dish_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -92,15 +92,14 @@ class DishDetail(APIView):
 
     def put(self, request: HttpRequest, format=None) -> JsonResponse:
         dish_data = JSONParser().parse(request)
-        dish = self.get_object(dish_data["Id"])
-        dish_serializer = DishSerializer(
-            dish, data=dish_data)
+        dish = self.get_object(dish_data['Id'])
+        dish_serializer = DishSerializer(dish, data=dish_data)
         if dish_serializer.is_valid():
             dish_serializer.save()
-            return JsonResponse("Updated Successfully.", safe=False)
+            return JsonResponse('Updated Successfully.', safe=False)
         return JsonResponse(dish_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request: HttpRequest, format=None) -> JsonResponse:
+    def delete(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         dish = self.get_object(id)
         dish.delete()
-        return JsonResponse("Deleted Successfully.", safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse('Deleted Successfully.', safe=False, status=status.HTTP_204_NO_CONTENT)

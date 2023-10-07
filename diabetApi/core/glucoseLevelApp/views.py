@@ -11,12 +11,12 @@ from .serializers import GlucoseLevelSerializer
 class GlucoseTypes(APIView):
 
     def get(request: HttpRequest, id: int = 0) -> JsonResponse:
-        unit_choices = [{'value': value, 'label': label}
-                        for value, label in GlucoseLevel.Unit.choices]
+        unit_choices = [{'value': value, 'label': label} for value, label in GlucoseLevel.Unit.choices]
         return JsonResponse(unit_choices, safe=False)
 
 
 class GlucosesList(APIView):
+
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
         glucose_levels = GlucoseLevel.objects.all()
         glucose_serializer = GlucoseLevelSerializer(glucose_levels, many=True)
@@ -27,7 +27,7 @@ class GlucosesList(APIView):
         glucose_serializer = GlucoseLevelSerializer(data=glucose_level_data)
         if glucose_serializer.is_valid():
             glucose_serializer.save()
-            return JsonResponse("Save Successfully.", safe=False)
+            return JsonResponse('Save Successfully.', safe=False)
         return JsonResponse(glucose_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -46,15 +46,14 @@ class GlucoseDetail(APIView):
 
     def put(self, request: HttpRequest, format=None) -> JsonResponse:
         glucose_level_data = JSONParser().parse(request)
-        glucose_level = self.get_object(glucose_level_data["Id"])
-        glucose_serializer = GlucoseLevelSerializer(
-            glucose_level, data=glucose_level_data)
+        glucose_level = self.get_object(glucose_level_data['Id'])
+        glucose_serializer = GlucoseLevelSerializer(glucose_level, data=glucose_level_data)
         if glucose_serializer.is_valid():
             glucose_serializer.save()
-            return JsonResponse("Updated Successfully.", safe=False)
+            return JsonResponse('Updated Successfully.', safe=False)
         return JsonResponse(glucose_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request: HttpRequest, format=None) -> JsonResponse:
+    def delete(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         glucose_level = self.get_object(id)
         glucose_level.delete()
-        return JsonResponse("Deleted Successfully.", safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse('Deleted Successfully.', safe=False, status=status.HTTP_204_NO_CONTENT)

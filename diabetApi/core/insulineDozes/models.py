@@ -8,11 +8,8 @@ class Doze(models.Model):
     description = models.CharField(max_length=300, blank=True, default='')
 
     class InsulineType(models.TextChoices):
-        RAPID = "1", "RAPID-ACTING"
-        LONG = "2", "LONG-RUNNING"
+        RAPID = '1', 'RAPID-ACTING'
+        LONG = '2', 'LONG-RUNNING'
 
-    type = models.CharField(
-        max_length=2,
-        choices=InsulineType.choices,
-        default=InsulineType.RAPID
-    )
+    # TODO: zmienić na backendzie i frontendzie nazwę type!
+    type = models.CharField(max_length=2, choices=InsulineType.choices, default=InsulineType.RAPID)  # noqa: A003
