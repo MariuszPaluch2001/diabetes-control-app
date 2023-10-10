@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GlucoseLevel } from '../models/glucose-level';
-import { HttpClient } from '@angular/common/http';
 import { GlucoseLevelService } from './services/glucose-level.service';
 
 @Component({

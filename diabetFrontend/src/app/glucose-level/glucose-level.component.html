@@ -5,6 +5,8 @@
   </a>
   <br />
   <br />
+  <app-glucose-chart></app-glucose-chart>
+  <br />
   <div *ngFor="let level of glucoseLevels">
     <app-glucose-row [glucoseSample]="level"></app-glucose-row>
   </div>

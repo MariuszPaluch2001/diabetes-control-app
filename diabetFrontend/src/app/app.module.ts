@@ -28,6 +28,7 @@ import { MealRowComponent } from './meals/meal-row/meal-row.component';
 import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
+import { GlucoseChartComponent } from './glucose-level/glucose-chart/glucose-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { SaveMealFormComponent } from './meals/save-form/save-form.component';
     MealRowComponent,
     MealSampleComponent,
     SaveMealFormComponent,
+    GlucoseChartComponent,
   ],
   imports: [
     BrowserModule,
