@@ -8,9 +8,9 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_DB: thenewboston
-      POSTGRES_USER: thenewboston
-      POSTGRES_PASSWORD: thenewboston
+      POSTGRES_DB: diabetApi
+      POSTGRES_USER: diabetApi
+      POSTGRES_PASSWORD: diabetApi
     volumes:
       - postgresql-data:/var/lib/postgresql/data
 
