@@ -9,12 +9,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DishRowComponent } from './dishes/dish-row/dish-row.component';
 import { DishSampleComponent } from './dishes/dish-sample/dish-sample.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { SaveDishFormComponent } from './dishes/save-form/save-form.component';
+import { GlucoseChartComponent } from './glucose-level/glucose-chart/glucose-chart.component';
 import { GlucoseLevelComponent } from './glucose-level/glucose-level.component';
 import { GlucoseRowComponent } from './glucose-level/glucose-row/glucose-row.component';
 import { GlucoseSampleComponent } from './glucose-level/glucose-sample/glucose-sample.component';
@@ -28,7 +30,6 @@ import { MealRowComponent } from './meals/meal-row/meal-row.component';
 import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
-import { GlucoseChartComponent } from './glucose-level/glucose-chart/glucose-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import { GlucoseChartComponent } from './glucose-level/glucose-chart/glucose-cha
     FormsModule,
     ReactiveFormsModule,
     MatGridListModule,
+    CanvasJSAngularChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
