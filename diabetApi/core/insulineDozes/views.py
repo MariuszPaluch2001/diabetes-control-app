@@ -9,14 +9,16 @@ from .serializers import DozeSerializer
 
 # Create your views here.
 
+
 class InsulineTypes(APIView):
 
     def get(request: HttpRequest, id: int = 0) -> JsonResponse:
-        unit_choices = [{'value': value, 'label': label}
-                        for value, label in Doze.InsulineType.choices]
+        unit_choices = [{'value': value, 'label': label} for value, label in Doze.InsulineType.choices]
         return JsonResponse(unit_choices, safe=False)
 
+
 class InslulineDozesList(APIView):
+
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
         dozes = Doze.objects.all()
         dozes_serializer = DozeSerializer(dozes, many=True)
@@ -27,9 +29,10 @@ class InslulineDozesList(APIView):
         doze_serializer = DozeSerializer(data=doze_data)
         if doze_serializer.is_valid():
             doze_serializer.save()
-            return JsonResponse("Save Successfully.", safe=False)
+            return JsonResponse('Save Successfully.', safe=False)
         return JsonResponse(doze_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
 class InsluineDozeDetail(APIView):
 
     def get_object(self, id: int) -> Doze:
@@ -45,15 +48,14 @@ class InsluineDozeDetail(APIView):
 
     def put(self, request: HttpRequest, format=None) -> JsonResponse:
         doze_data = JSONParser().parse(request)
-        doze = self.get_object(doze_data["Id"])
-        doze_serializer = DozeSerializer(
-            doze, data=doze_data)
+        doze = self.get_object(doze_data['Id'])
+        doze_serializer = DozeSerializer(doze, data=doze_data)
         if doze_serializer.is_valid():
             doze_serializer.save()
-            return JsonResponse("Updated Successfully.", safe=False)
+            return JsonResponse('Updated Successfully.', safe=False)
         return JsonResponse(doze_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request: HttpRequest, format=None) -> JsonResponse:
+    def delete(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         doze = self.get_object(id)
         doze.delete()
-        return JsonResponse("Deleted Successfully.", safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse('Deleted Successfully.', safe=False, status=status.HTTP_204_NO_CONTENT)

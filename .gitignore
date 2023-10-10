@@ -3,3 +3,4 @@ myenv/
 __pycache__/
 db.sqlite3
 .env/
+.mypy_cache/
