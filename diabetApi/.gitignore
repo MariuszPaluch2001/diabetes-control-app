@@ -1,4 +1,7 @@
 __pycache__/
 db.sqlite3
 local/
+.venv/
+diabetApi/staticfiles/
+.env
 .mypy_cache/

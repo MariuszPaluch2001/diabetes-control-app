@@ -6,11 +6,18 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions',
-    'django.contrib.messages', 'django.contrib.staticfiles', 'corsheaders',
-    'core.insulineDozes.apps.InsulinedozesConfig', 'core.glucoseLevelApp.apps.GlucoselevelappConfig',
-    'core.mealApp.apps.MealappConfig', 'rest_framework'
-]
+    'daphne',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'corsheaders',
+    'core.insulineDozes.apps.InsulinedozesConfig',
+    'core.glucoseLevelApp.apps.GlucoselevelappConfig',
+    'core.mealApp.apps.MealappConfig',
+    'rest_framework']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,14 +49,21 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.diabetApi.wsgi.application'
+ASGI_APPLICATION = "core.diabetApi.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/mnt/c/workspace/django-diabeties-app/diabetApi/db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'diabetApi',
+        'USER': 'diabetApi',
+        'PASSWORD': 'diabetApi',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'ATOMIC_REQUESTS': True,
+        'CONN_MAX_AGE': 0,
     }
 }
 
@@ -86,6 +100,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # type: ignore # noqa: F821
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
