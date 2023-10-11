@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CanvasJS } from '@canvasjs/angular-charts';
+import { InsulineType } from 'src/app/enums/insulineTypes';
 import { DataPoint } from 'src/app/models/chart-point';
 import { InsulineDoze } from 'src/app/models/insuline-doze';
 
@@ -52,7 +53,7 @@ export class InsulineChartComponent implements OnChanges, OnInit {
         return {
           x: sample.timestamp,
           y: sample.units,
-          color: sample.typeName == 'RAPID-ACTING' ? 'orange' : 'blue'
+          color: sample.typeName == InsulineType.RAPID_ACTING ? 'orange' : 'blue'
         };
       }
     );
