@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import {
   InsulineDoze,
   InsulineDozePost,
@@ -18,11 +18,23 @@ export class InsulineDozesService {
   API_URL = isLocalEnvironment() ? LOCAL_API_URL : PRODUCTION_API_URL;
 
   getInsulineDozeById(id: number): Observable<InsulineDoze> {
-    return this.http.get<InsulineDoze>(`${this.API_URL}/dozes/${id}`);
+    return this.http.get<InsulineDoze>(`${this.API_URL}/dozes/${id}`).pipe(
+      map((item: InsulineDoze) => {
+        item.timestamp = new Date(item.timestamp);
+        return item;
+      })
+    );
   }
 
   getInsulineDozes(): Observable<InsulineDoze[]> {
-    return this.http.get<InsulineDoze[]>(`${this.API_URL}/dozes/`);
+    return this.http.get<InsulineDoze[]>(`${this.API_URL}/dozes/`).pipe(
+      map((items: InsulineDoze[]) => {
+        items.forEach((item) => {
+          item.timestamp = new Date(item.timestamp);
+        });
+        return items;
+      })
+    );
   }
 
   getInsulineTypes(): Observable<InsulineDozeType[]> {
