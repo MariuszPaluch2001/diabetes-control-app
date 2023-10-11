@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import {
   GlucoseLevel,
   GlucoseLevelPost,
@@ -19,14 +19,26 @@ export class GlucoseLevelService {
   API_URL = isLocalEnvironment() ? LOCAL_API_URL : PRODUCTION_API_URL;
 
   getGlucoseLevelById(id: number): Observable<GlucoseLevel> {
-    return this.http.get<GlucoseLevel>(
-      `${this.API_URL}/${UrlParts.GLUCOSE_LEVEL_URL}/${id}`
+    return this.http
+    .get<GlucoseLevel>(`${this.API_URL}/${UrlParts.GLUCOSE_LEVEL_URL}/${id}`)
+    .pipe(
+      map((item: GlucoseLevel) => {
+        item.timestamp = new Date(item.timestamp);
+        return item;
+      })
     );
   }
 
   getGlucoseLevels(): Observable<GlucoseLevel[]> {
-    return this.http.get<GlucoseLevel[]>(
-      `${this.API_URL}/${UrlParts.GLUCOSE_LEVEL_URL}/`
+    return this.http
+    .get<GlucoseLevel[]>(`${this.API_URL}/${UrlParts.GLUCOSE_LEVEL_URL}/`)
+    .pipe(
+      map((items: GlucoseLevel[]) => {
+        items.forEach((item) => {
+          item.timestamp = new Date(item.timestamp);
+        });
+        return items;
+      })
     );
   }
 
