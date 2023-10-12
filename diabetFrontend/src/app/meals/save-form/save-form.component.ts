@@ -4,6 +4,8 @@ import { DishService } from 'src/app/dishes/services/dish.service';
 import { MealService } from '../services/meal.service';
 import { Meal, MealPost } from 'src/app/models/meal';
 import { Dish } from 'src/app/models/dish';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 
 @Component({
   selector: 'app-save-form',
@@ -16,8 +18,16 @@ export class SaveMealFormComponent {
   constructor(
     private fb: FormBuilder,
     private dishService: DishService,
-    private mealService: MealService
+    private mealService: MealService,
+    private dialog: MatDialog
   ) {}
+
+  openDialog(title: string, description: string): void {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '500px',
+      data: { title: title, text: description },
+    });
+  }
 
   ngOnInit(): void {
     this.dishService.getDishes().subscribe((data) => {
@@ -35,10 +45,10 @@ export class SaveMealFormComponent {
   onSave() {
     if (this.mealForm.valid) {
       this.mealService.saveMeal(this.mapFormData()).subscribe((data) => {
-        alert(data);
+        this.openDialog('Save successfully', 'Meal added successfully');
       });
     } else {
-      alert('Data are invalid');
+      this.openDialog('Save unsuccessfull', 'Something goes wrong');
     }
   }
 
