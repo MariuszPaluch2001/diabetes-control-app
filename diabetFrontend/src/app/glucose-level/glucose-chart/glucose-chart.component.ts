@@ -35,7 +35,7 @@ export class GlucoseChartComponent implements OnChanges, OnInit {
       },
       data: [
         {
-          type: 'stepLine',
+          type: 'line',
           dataPoints: this.dataPlots,
         },
       ],
