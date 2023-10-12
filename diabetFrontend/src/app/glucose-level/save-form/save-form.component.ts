@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {
   GlucoseLevelPost,
   GlucoseLevelType,
 } from 'src/app/models/glucose-level';
 import { GlucoseLevelService } from '../services/glucose-level.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogFormComponent } from './dialog-form/dialog-form.component';
 @Component({
   selector: 'app-glucose-save-form',
   templateUrl: './save-form.component.html',
@@ -18,8 +17,16 @@ export class SaveGlucoseFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private glucoseService: GlucoseLevelService
+    private glucoseService: GlucoseLevelService,
+    private dialog: MatDialog
   ) {}
+
+  openDialog(title: string, description: string): void {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '500px',
+      data: { title: title, text: description },
+    });
+  }
 
   ngOnInit(): void {
     this.glucoseService.getGlucoseLevelTypes().subscribe((data) => {
@@ -38,10 +45,13 @@ export class SaveGlucoseFormComponent implements OnInit {
       this.glucoseService
       .saveGlucoseLevel(this.mapFormData())
       .subscribe((data) => {
-        alert(data);
+        this.openDialog(
+          'Save successfully',
+          'Glucose level added successfully'
+        );
       });
     } else {
-      alert('Data are invalid');
+      this.openDialog('Save unsuccessfull', 'Something goes wrong');
     }
   }
 
