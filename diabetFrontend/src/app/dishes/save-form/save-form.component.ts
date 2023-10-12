@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DishService } from '../services/dish.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 import { DishPost, DishUnitType } from 'src/app/models/dish';
+import { DishService } from '../services/dish.service';
 
 @Component({
   selector: 'app-save-form',
@@ -11,8 +13,19 @@ import { DishPost, DishUnitType } from 'src/app/models/dish';
 export class SaveDishFormComponent {
   units: DishUnitType[] = [];
 
-  constructor(private fb: FormBuilder, private dishService: DishService) {}
+  constructor(
+    private fb: FormBuilder,
+    private dishService: DishService,
+    private dialog: MatDialog
+  ) {}
 
+  openDialog(title: string, description: string): void {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '500px',
+      data: { title: title, text: description },
+    });
+  }
+  
   ngOnInit(): void {
     this.dishService.getDishUnits().subscribe((data) => {
       this.units = data;
@@ -31,10 +44,10 @@ export class SaveDishFormComponent {
   onSave() {
     if (this.dishForm.valid) {
       this.dishService.saveDish(this.mapFormData()).subscribe((data) => {
-        alert(data);
+        this.openDialog('Save successfully', 'Dish added successfully');
       });
     } else {
-      alert('Data are invalid');
+      this.openDialog('Save successfull', 'Something went wrong');
     }
   }
 
