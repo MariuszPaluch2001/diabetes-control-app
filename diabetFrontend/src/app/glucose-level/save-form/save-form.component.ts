@@ -6,7 +6,7 @@ import {
 } from 'src/app/models/glucose-level';
 import { GlucoseLevelService } from '../services/glucose-level.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogFormComponent } from './dialog-form/dialog-form.component';
+import { DialogFormComponent } from '../../dialog-form/dialog-form.component';
 @Component({
   selector: 'app-glucose-save-form',
   templateUrl: './save-form.component.html',

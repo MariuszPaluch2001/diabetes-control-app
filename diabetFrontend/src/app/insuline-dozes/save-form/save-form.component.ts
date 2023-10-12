@@ -5,6 +5,8 @@ import {
   InsulineDozeType,
 } from 'src/app/models/insuline-doze';
 import { InsulineDozesService } from '../services/insuline-dozes.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 
 @Component({
   selector: 'app-insuline-save-form',
@@ -16,8 +18,16 @@ export class SaveInsulineFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private insulineService: InsulineDozesService
+    private insulineService: InsulineDozesService,
+    private dialog: MatDialog
   ) {}
+
+  openDialog(title: string, description: string): void {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '500px',
+      data: { title: title, text: description },
+    });
+  }
 
   ngOnInit(): void {
     this.insulineService.getInsulineTypes().subscribe((data) => {
@@ -36,9 +46,14 @@ export class SaveInsulineFormComponent implements OnInit {
     if (this.insulineDozeForm.valid) {
       this.insulineService
       .saveInsulineDoze(this.mapFormData())
-      .subscribe((data) => alert(data));
+      .subscribe((data) =>
+        this.openDialog(
+          'Saved successfully',
+          'Insuline doze saved successfully'
+        )
+      );
     } else {
-      alert('Data are invalid');
+      this.openDialog('Save unsuccessful', 'Something went wrong');
     }
   }
 

@@ -21,7 +21,7 @@ import { GlucoseChartComponent } from './glucose-level/glucose-chart/glucose-cha
 import { GlucoseLevelComponent } from './glucose-level/glucose-level.component';
 import { GlucoseRowComponent } from './glucose-level/glucose-row/glucose-row.component';
 import { GlucoseSampleComponent } from './glucose-level/glucose-sample/glucose-sample.component';
-import { DialogFormComponent } from './glucose-level/save-form/dialog-form/dialog-form.component';
+import { DialogFormComponent } from './dialog-form/dialog-form.component';
 import { SaveGlucoseFormComponent } from './glucose-level/save-form/save-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { InsulineChartComponent } from './insuline-dozes/insuline-chart/insuline-chart.component';
