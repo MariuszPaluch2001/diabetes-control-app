@@ -57,7 +57,7 @@ export class LoginComponent {
   onSubmit(formData: FormGroup, formDirective: FormGroupDirective): void {
     const password = formData.value.password;
     const username = formData.value.username;
-    this.auth.login(password, username);
+    this.auth.login(password, username).subscribe((data) => console.log(data));
     formDirective.resetForm();
     this.loginForm.reset();
   }
