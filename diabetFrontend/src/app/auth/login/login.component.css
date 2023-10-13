@@ -1,0 +1,32 @@
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+           Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+.login-toolbar {
+  justify-content: center;
+}
+
+.container {
+  margin-top: 10%;
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.form-element {
+  padding: 25px 25px 25px 25px;
+  width: 90%;
+}
+
+.button-submit {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.register-link {
+  text-align: center;
+  padding: 10px;
+}
