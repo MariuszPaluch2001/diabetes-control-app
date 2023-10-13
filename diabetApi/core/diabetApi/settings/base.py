@@ -17,7 +17,8 @@ INSTALLED_APPS = [
     'core.insulineDozes.apps.InsulinedozesConfig',
     'core.glucoseLevelApp.apps.GlucoselevelappConfig',
     'core.mealApp.apps.MealappConfig',
-    'rest_framework']
+    'rest_framework',
+    'rest_framework.authtoken']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

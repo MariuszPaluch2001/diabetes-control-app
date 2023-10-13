@@ -12,4 +12,5 @@ urlpatterns = [
     path('dozes/', include('core.insulineDozes.urls')),
     path('glucoseLevels/', include('core.glucoseLevelApp.urls')),
     path('mealApp/', include('core.mealApp.urls')),
+    path('auth/', include('core.auth.urls')),
 ]
