@@ -20,7 +20,7 @@ export class InsulineChartComponent implements OnChanges, OnInit {
   dataPlots: DataPoint[] = [];
   chart: any;
   ngOnInit() {
-    this.chart = new CanvasJS.Chart('chartContainer', {
+    this.chart = new CanvasJS.Chart('chartContainerInsuline', {
       theme: 'light2',
       animationEnabled: true,
       zoomEnabled: true,

@@ -1,0 +1,21 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Diabetic app</span>
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        <a routerLink="glucose-level/list" mat-button>Glucose levels</a>
+        <a routerLink="insuline-doze/list" mat-button>Insuline dozes</a>
+        <a routerLink="dish/list" mat-button>Dishes</a>
+        <a routerLink="meal/list" mat-button>Meals</a>
+        <a routerLink="home" mat-button *ngIf="isLoggedIn" (click)="logout()"
+          >Logout</a
+        >
+        <a routerLink="auth/login" mat-button *ngIf="!isLoggedIn">Login</a>
+        <a routerLink="auth/register" mat-button *ngIf="!isLoggedIn"
+          >Register</a
+        >
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

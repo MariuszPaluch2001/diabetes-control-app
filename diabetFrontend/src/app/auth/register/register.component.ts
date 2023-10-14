@@ -22,13 +22,11 @@ export class RegisterComponent implements OnInit {
   }
 
   createForm() {
-    let emailregex: RegExp =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.registerForm = new FormGroup({
       username: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [
         Validators.required,
-        Validators.pattern(emailregex),
+        Validators.email,
       ]),
       password: new FormControl(null, [
         Validators.required,
@@ -40,7 +38,7 @@ export class RegisterComponent implements OnInit {
   emaiErrors() {
     return this.registerForm.get('email')!.hasError('required')
       ? 'This field is required'
-      : this.registerForm.get('email')!.hasError('pattern')
+      : this.registerForm.get('email')!.hasError('email')
       ? 'Not a valid emailaddress'
       : '';
   }
@@ -68,6 +66,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get(input)!.touched);
     return validation;
   }
+
   onSubmit(formData: FormGroup, formDirective: FormGroupDirective): void {
     const email = formData.value.email;
     const password = formData.value.password;
