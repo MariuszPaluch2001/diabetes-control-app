@@ -10,7 +10,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
@@ -39,6 +41,8 @@ import { MealRowComponent } from './meals/meal-row/meal-row.component';
 import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -66,6 +70,7 @@ import { SaveMealFormComponent } from './meals/save-form/save-form.component';
     AuthComponent,
     RegisterComponent,
     LoginComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +89,9 @@ import { SaveMealFormComponent } from './meals/save-form/save-form.component';
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

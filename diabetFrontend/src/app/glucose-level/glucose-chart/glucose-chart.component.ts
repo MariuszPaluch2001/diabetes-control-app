@@ -3,7 +3,7 @@ import {
   Input,
   OnChanges,
   OnInit,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { CanvasJS } from '@canvasjs/angular-charts';
 import { DataPoint } from 'src/app/models/chart-point';
@@ -18,8 +18,11 @@ export class GlucoseChartComponent implements OnChanges, OnInit {
   @Input() glucoseLevels: GlucoseLevel[] = [];
   dataPlots: DataPoint[] = [];
   chart: any;
+
+  constructor() {}
+
   ngOnInit() {
-    this.chart = new CanvasJS.Chart('chartContainer', {
+    this.chart = new CanvasJS.Chart('chartContainerGlucose', {
       theme: 'light2',
       animationEnabled: true,
       zoomEnabled: true,
