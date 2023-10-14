@@ -3,7 +3,7 @@
          Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
-.login-toolbar {
+.register-toolbar {
   justify-content: center;
 }
 
