@@ -1,104 +1,88 @@
 <div class="container" novalidate>
-  <form class="form" [formGroup]="dishForm" (ngSubmit)="onSave()">
-    <h1 class="form-title">Save dish</h1>
-
-    <mat-form-field class="form-element">
-      <input
-        matInput
-        type="text"
-        placeholder="Input dish name"
-        formControlName="name"
-        required
-      />
-      <mat-error
-        *ngIf="
-          dishForm.controls!.name.invalid &&
-          (dishForm.controls!.name.dirty || dishForm.controls!.name.touched) &&
-          dishForm.controls!.name.errors!.required
-        "
-        >Field is required</mat-error
+  <div>
+    <mat-toolbar class="toolbar" color="primary">Save dish</mat-toolbar>
+    <mat-card>
+      <form
+        class="form"
+        [formGroup]="dishForm"
+        #formDirective="ngForm"
+        (ngSubmit)="onSubmit()"
       >
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>local_dining</mat-icon>
+          <input
+            autofocus
+            matInput
+            type="text"
+            placeholder="Input dish name"
+            formControlName="name"
+            required
+          />
+          <mat-error *ngIf="checkValidation('name')">
+            {{ fieldRequired }}
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="form-element">
-      <input
-        matInput
-        type="number"
-        placeholder="Input carbohydrate exchanges"
-        formControlName="carb_exchange"
-        required
-      />
-      <mat-error
-        *ngIf="
-          dishForm.controls!.carb_exchange.invalid &&
-          (dishForm.controls!.carb_exchange.dirty ||
-            dishForm.controls!.carb_exchange.touched) &&
-          dishForm.controls!.carb_exchange.errors!.required
-        "
-        >Field is required</mat-error
-      >
-      <mat-error
-        *ngIf="
-          dishForm.controls!.carb_exchange.invalid &&
-          (dishForm.controls!.carb_exchange.dirty ||
-            dishForm.controls!.carb_exchange.touched) &&
-          dishForm.controls!.carb_exchange.errors!.pattern
-        "
-        >Field is not integer number</mat-error
-      >
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>local_pizza</mat-icon>
+          <input
+            matInput
+            type="text"
+            placeholder="Input carbohydrate exchanges"
+            formControlName="carb_exchange"
+            required
+          />
+          <mat-error *ngIf="checkValidation('carb_exchange')">
+            {{ getErrorCarbExchange() }}
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="form-element">
-      <input
-        matInput
-        type="number"
-        placeholder="Input glycemic index"
-        formControlName="glycemic_index"
-        required
-      />
-      <mat-error
-        *ngIf="
-          dishForm.controls!.glycemic_index.invalid &&
-          (dishForm.controls!.glycemic_index.dirty ||
-            dishForm.controls!.glycemic_index.touched) &&
-          dishForm.controls!.glycemic_index.errors!.required
-        "
-        >Field is required</mat-error
-      >
-      <mat-error
-        *ngIf="
-          dishForm.controls!.glycemic_index.invalid &&
-          (dishForm.controls!.glycemic_index.dirty ||
-            dishForm.controls!.glycemic_index.touched) &&
-          dishForm.controls!.glycemic_index.errors!.pattern
-        "
-        >Field is not integer number</mat-error
-      >
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>arrow_upward</mat-icon>
+          <input
+            matInput
+            type="text"
+            placeholder="Input glycemic index"
+            formControlName="glycemic_index"
+            required
+          />
+          <mat-error *ngIf="checkValidation('glycemic_index')">
+            {{ getErrorGlycemicIndex() }}
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="form-element">
-      <mat-label>Unit type</mat-label>
-      <mat-select formControlName="unit">
-        <mat-option *ngFor="let unit of units" [value]="unit.label">
-          {{ unit.label }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>filter_lists</mat-icon>
+          <mat-label>Unit type</mat-label>
+          <mat-select formControlName="unit">
+            <mat-option *ngFor="let unit of units" [value]="unit.label">
+              {{ unit.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <mat-form-field class="form-element">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        formControlName="description"
-        placeholder="Description ..."
-        style="height: 200px"
-      ></textarea>
-    </mat-form-field>
-
-    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button">
-        Submit
-      </button>
-    </div>
-  </form>
+        <mat-form-field class="form-element">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            placeholder="Description ..."
+            style="height: 200px"
+          ></textarea>
+        </mat-form-field>
+        <hr />
+        <div class="form-element">
+          <button
+            [disabled]="dishForm.invalid"
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="button"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
 </div>
