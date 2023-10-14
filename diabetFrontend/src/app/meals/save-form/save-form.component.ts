@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DishService } from 'src/app/dishes/services/dish.service';
 import { MealService } from '../services/meal.service';
 import { Meal, MealPost } from 'src/app/models/meal';
@@ -13,6 +13,7 @@ import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
   styleUrls: ['./save-form.component.css'],
 })
 export class SaveMealFormComponent {
+  mealForm!: FormGroup;
   dishes: Dish[] = [];
 
   constructor(
@@ -34,15 +35,33 @@ export class SaveMealFormComponent {
       this.dishes = data;
       this.mealForm.controls.dish.setValue(this.dishes[0].Id);
     });
+    this.createForm();
   }
 
-  mealForm = this.fb.group({
-    quantity: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-    dish: ['', Validators.required],
-    description: [''],
-  });
+  createForm() {
+    this.mealForm = this.fb.group({
+      quantity: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      dish: ['', Validators.required],
+      description: [''],
+    });
+  }
 
-  onSave() {
+  getErrorQuantity() {
+    return this.mealForm.get('quantity')!.hasError('required')
+      ? 'This field is required (Must be positive number)'
+      : this.mealForm.get('quantity')!.hasError('pattern')
+      ? 'This field should be a positive number'
+      : '';
+  }
+
+  checkValidation(input: string) {
+    const validation =
+      this.mealForm.get(input)!.invalid &&
+      (this.mealForm.get(input)!.dirty || this.mealForm.get(input)!.touched);
+    return validation;
+  }
+
+  onSubmit() {
     if (this.mealForm.valid) {
       this.mealService.saveMeal(this.mapFormData()).subscribe((data) => {
         this.openDialog('Save successfully', 'Meal added successfully');

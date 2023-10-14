@@ -1,7 +1,15 @@
 .fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-         Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
+}
+
+.button-submit {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.toolbar {
+  justify-content: center;
 }
 
 .container {
@@ -12,22 +20,9 @@
   justify-content: center;
 }
 
-.form {
-  border-radius: 30px;
-  background-color: rgb(103, 228, 195);
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
 .form-element {
   padding: 25px 25px 25px 25px;
   width: 90%;
-}
-
-.form-title {
-  padding: 25px 25px 25px 25px;
-  text-align: center;
 }
 
 .button {
