@@ -1,57 +1,62 @@
 <div class="container" novalidate>
-  <form class="form" [formGroup]="insulineDozeForm" (ngSubmit)="onSave()">
-    <h1 class="form-title">Save insuline doze</h1>
-    <mat-form-field class="form-element">
-      <input
-        matInput
-        type="number"
-        placeholder="Input insuline dozes"
-        formControlName="units"
-        required
-      />
-      <mat-error
-        *ngIf="
-          insulineDozeForm.controls!.units.invalid &&
-          (insulineDozeForm.controls!.units.dirty ||
-            insulineDozeForm.controls!.units.touched) &&
-          insulineDozeForm.controls!.units.errors!.required
-        "
-        >Field is required</mat-error
+  <div>
+    <mat-toolbar class="toolbar" color="primary"
+      >Save insuline doze</mat-toolbar
+    >
+    <mat-card>
+      <form
+        class="form"
+        [formGroup]="insulineDozeForm"
+        #formDirective="ngForm"
+        (ngSubmit)="onSubmit()"
       >
-      <mat-error
-        *ngIf="
-          insulineDozeForm.controls!.units.invalid &&
-          (insulineDozeForm.controls!.units.dirty ||
-            insulineDozeForm.controls!.units.touched) &&
-          insulineDozeForm.controls!.units.errors!.pattern
-        "
-        >Field is not integer number</mat-error
-      >
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>opacity</mat-icon>
+          <input
+            autofocus
+            matInput
+            type="text"
+            placeholder="Input insuline dozes"
+            formControlName="units"
+            required
+          />
+          <mat-error *ngIf="checkValidation('units')">{{
+            getErrorUnits()
+          }}</mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="form-element">
-      <mat-label>Insuline type</mat-label>
-      <mat-select formControlName="type">
-        <mat-option *ngFor="let type of types" [value]="type.label">
-          {{ type.label }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>filter_list</mat-icon>
+          <mat-label>Insuline type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let type of types" [value]="type.label">
+              {{ type.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <mat-form-field class="form-element">
-      <mat-label>Leave a note</mat-label>
-      <textarea
-        matInput
-        formControlName="description"
-        placeholder="Note ..."
-        style="height: 200px"
-      ></textarea>
-    </mat-form-field>
-
-    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button">
-        Submit
-      </button>
-    </div>
-  </form>
+        <mat-form-field class="form-element">
+          <mat-label>Leave a note</mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            placeholder="Note ..."
+            style="height: 200px"
+          ></textarea>
+        </mat-form-field>
+        <hr />
+        <div class="form-element">
+          <button
+            mat-raised-button
+            [disabled]="insulineDozeForm.invalid"
+            color="primary"
+            type="submit"
+            class="button"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
 </div>
