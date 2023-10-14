@@ -1,47 +1,49 @@
 <div class="container" novalidate>
-  <form class="form" [formGroup]="glucoseForm" (ngSubmit)="onSave()">
-    <h1 class="form-title">Save glucose level</h1>
-    <mat-form-field class="form-element">
-      <input
-        matInput
-        type="number"
-        placeholder="Input glucose value"
-        formControlName="glucoseLevel"
-        required
-      />
-      <mat-error
-        *ngIf="
-          glucoseForm.controls!.glucoseLevel.invalid &&
-          (glucoseForm.controls!.glucoseLevel.dirty ||
-            glucoseForm.controls!.glucoseLevel.touched) &&
-          glucoseForm.controls!.glucoseLevel.errors!.required
-        "
-        >Field is required</mat-error
+  <div>
+    <mat-toolbar class="login-toolbar" color="primary">Save glucose level</mat-toolbar>
+    <mat-card>
+      <form
+        [formGroup]="glucoseForm"
+        #formDirective="ngForm"
+        (ngSubmit)="onSubmit()"
       >
-      <mat-error
-        *ngIf="
-          glucoseForm.controls!.glucoseLevel.invalid &&
-          (glucoseForm.controls!.glucoseLevel.dirty ||
-            glucoseForm.controls!.glucoseLevel.touched) &&
-          glucoseForm.controls!.glucoseLevel.errors!.pattern
-        "
-        >Field is not integer number</mat-error
-      >
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>invert_colors</mat-icon>
+          <input
+            autofocus
+            matInput
+            type="text"
+            placeholder="Input glucose value"
+            formControlName="glucoseLevel"
+            required
+          />
+          <mat-error *ngIf="checkValidation('glucoseLevel')">
+            {{ getErrorGlucoseLevel() }}
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="form-element">
-      <mat-label>Glucose unit</mat-label>
-      <mat-select formControlName="unit">
-        <mat-option *ngFor="let unit of units" [value]="unit.label">
-          {{ unit.label }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-icon matPrefix>filter_list</mat-icon>
+          <mat-label>Glucose unit</mat-label>
+          <mat-select formControlName="unit">
+            <mat-option *ngFor="let unit of units" [value]="unit.label">
+              {{ unit.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button">
-        Submit
-      </button>
-    </div>
-  </form>
+        <hr />
+        <div class="button-submit">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="button"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
 </div>
