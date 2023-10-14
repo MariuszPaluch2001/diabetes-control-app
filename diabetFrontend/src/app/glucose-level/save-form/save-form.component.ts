@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   GlucoseLevelPost,
   GlucoseLevelType,
@@ -14,6 +14,7 @@ import { DialogFormComponent } from '../../dialog-form/dialog-form.component';
 })
 export class SaveGlucoseFormComponent implements OnInit {
   units: GlucoseLevelType[] = [];
+  glucoseForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -33,14 +34,33 @@ export class SaveGlucoseFormComponent implements OnInit {
       this.units = data;
       this.glucoseForm.controls.unit.setValue(this.units[0].label);
     });
+    this.createForm();
   }
 
-  glucoseForm = this.fb.group({
-    glucoseLevel: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-    unit: ['', Validators.required],
-  });
+  createForm() {
+    this.glucoseForm = this.fb.group({
+      glucoseLevel: ['', [Validators.required, Validators.pattern('^[0-9]*[1-9][0-9]*$')]],
+      unit: ['', Validators.required],
+    });
+  }
 
-  onSave() {
+  getErrorGlucoseLevel() {
+    return this.glucoseForm.get('glucoseLevel')!.hasError('pattern')
+      ? 'This field should be integer number'
+      : this.glucoseForm.get('glucoseLevel')!.hasError('required')
+      ? 'This field is required'
+      : '';
+  }
+
+  checkValidation(input: string) {
+    const validation =
+      this.glucoseForm.get(input)!.invalid &&
+      (this.glucoseForm.get(input)!.dirty ||
+        this.glucoseForm.get(input)!.touched);
+    return validation;
+  }
+
+  onSubmit() {
     if (this.glucoseForm.valid) {
       this.glucoseService
       .saveGlucoseLevel(this.mapFormData())

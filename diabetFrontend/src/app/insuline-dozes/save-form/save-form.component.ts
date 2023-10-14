@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   InsulineDozePost,
   InsulineDozeType,
@@ -15,6 +15,8 @@ import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 })
 export class SaveInsulineFormComponent implements OnInit {
   types: InsulineDozeType[] = [];
+  insulineDozeForm!: FormGroup;
+  fieldRequired: string = 'This field is required';
 
   constructor(
     private fb: FormBuilder,
@@ -34,15 +36,34 @@ export class SaveInsulineFormComponent implements OnInit {
       this.types = data;
       this.insulineDozeForm.controls.type.setValue(this.types[0].label);
     });
+    this.createForm();
   }
 
-  insulineDozeForm = this.fb.group({
-    units: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-    type: ['', Validators.required],
-    description: [''],
-  });
+  createForm() {
+    this.insulineDozeForm = this.fb.group({
+      units: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      type: ['', Validators.required],
+      description: [''],
+    });
+  }
 
-  onSave() {
+  getErrorUnits() {
+    return this.insulineDozeForm.get('units')!.hasError('required')
+      ? 'This field is required (Must be positive number)'
+      : this.insulineDozeForm.get('units')!.hasError('pattern')
+      ? 'This field must be a positive number'
+      : '';
+  }
+
+  checkValidation(input: string) {
+    const validation =
+      this.insulineDozeForm.get(input)!.invalid &&
+      (this.insulineDozeForm.get(input)!.dirty ||
+        this.insulineDozeForm.get(input)!.touched);
+    return validation;
+  }
+
+  onSubmit() {
     if (this.insulineDozeForm.valid) {
       this.insulineService
       .saveInsulineDoze(this.mapFormData())

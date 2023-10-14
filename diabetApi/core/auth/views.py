@@ -44,7 +44,7 @@ class Test_Token(APIView):
     def get(self, request: HttpRequest, format=None) -> Response:
         content = {
             'user': str(request.user),
-            'auth': str(request.auth),
+            'auth': True,
         }
         return Response(content)
     

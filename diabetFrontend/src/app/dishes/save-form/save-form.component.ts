@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 import { DishPost, DishUnitType } from 'src/app/models/dish';
@@ -11,6 +11,8 @@ import { DishService } from '../services/dish.service';
   styleUrls: ['./save-form.component.css'],
 })
 export class SaveDishFormComponent {
+  dishForm!: FormGroup;
+  fieldRequired: string = 'This field is required';
   units: DishUnitType[] = [];
 
   constructor(
@@ -25,23 +27,55 @@ export class SaveDishFormComponent {
       data: { title: title, text: description },
     });
   }
-  
+
   ngOnInit(): void {
     this.dishService.getDishUnits().subscribe((data) => {
       this.units = data;
       this.dishForm.controls.unit.setValue(this.units[0].label);
     });
+    this.createForm();
   }
 
-  dishForm = this.fb.group({
-    carb_exchange: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-    glycemic_index: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-    name: ['', Validators.required],
-    unit: ['', Validators.required],
-    description: [''],
-  });
+  createForm() {
+    this.dishForm = this.fb.group({
+      carb_exchange: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]*$')],
+      ],
+      glycemic_index: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]*$')],
+      ],
+      name: ['', Validators.required],
+      unit: ['', Validators.required],
+      description: [''],
+    });
+  }
 
-  onSave() {
+  getErrorGlycemicIndex() {
+    return this.dishForm.get('glycemic_index')!.hasError('required')
+      ? 'This field is required (Must be positive number)'
+      : this.dishForm.get('glycemic_index')!.hasError('pattern')
+      ? 'This field must be a positive number'
+      : '';
+  }
+
+  getErrorCarbExchange() {
+    return this.dishForm.get('carb_exchange')!.hasError('required')
+      ? 'This field is required (Must be positive number)'
+      : this.dishForm.get('carb_exchange')!.hasError('pattern')
+      ? 'This field must be a positive number'
+      : '';
+  }
+
+  checkValidation(input: string) {
+    const validation =
+      this.dishForm.get(input)!.invalid &&
+      (this.dishForm.get(input)!.dirty || this.dishForm.get(input)!.touched);
+    return validation;
+  }
+
+  onSubmit() {
     if (this.dishForm.valid) {
       this.dishService.saveDish(this.mapFormData()).subscribe((data) => {
         this.openDialog('Save successfully', 'Dish added successfully');

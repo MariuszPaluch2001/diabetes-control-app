@@ -1,7 +1,8 @@
 mat-grid-tile {
-  background: lightblue;
   font-weight: bold;
   font-size: 30px;
+  background-color: #3e51b5;
+  color: #dbd9d9;
 }
 
 .div-center {
