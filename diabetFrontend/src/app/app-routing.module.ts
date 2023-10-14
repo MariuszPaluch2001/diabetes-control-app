@@ -13,6 +13,8 @@ import { MealsComponent } from './meals/meals.component';
 import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { SaveDishFormComponent } from './dishes/save-form/save-form.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'meal/list', component: MealsComponent },
   { path: 'meal/list/:id', component: MealSampleComponent },
   { path: 'meal/save-form', component: SaveMealFormComponent },
+  { path: 'auth/register', component: RegisterComponent },
+  { path: 'auth/login', component: LoginComponent },
   { path: '**', redirectTo: 'home' },
 ];
 
