@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { InsulineDoze } from '../models/insuline-doze';
 import { InsulineDozesService } from './services/insuline-dozes.service';
 
@@ -15,5 +16,17 @@ export class InsulineDozesComponent implements OnInit {
     this.insulineServive.getInsulineDozes().subscribe((data) => {
       this.insulineDozes = data;
     });
+  }
+  selectedDate: any;
+  event: any;
+
+  dateClass() {
+    return (date: Date): MatCalendarCellCssClasses => {
+      return 'special-date';
+    };
+  }
+
+  onSelect(event: Date | null) {
+    this.selectedDate = event;
   }
 }
