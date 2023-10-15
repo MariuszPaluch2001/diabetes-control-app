@@ -2,15 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -42,7 +46,6 @@ import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -92,6 +95,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSidenavModule,
     MatListModule,
     FlexLayoutModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
