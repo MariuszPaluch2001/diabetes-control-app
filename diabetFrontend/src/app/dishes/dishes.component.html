@@ -1,9 +1,13 @@
 <div>
-  <h1 class="title-center">List of dishes</h1>
-  <a class="link-form" [routerLink]="['/dish/save-form']">
-    <button mat-raised-button color="primary">Add new sample</button>
-  </a>
   <br />
+  <div class="menu">
+    <a [routerLink]="['/dish/save-form']" style="margin-right: 10px">
+      <button mat-raised-button color="primary">
+        <mat-icon matPrefix>add</mat-icon>
+        Add new sample
+      </button>
+    </a>
+  </div>
   <br />
   <div *ngFor="let dish of dishes">
     <app-dish-row [dish]="dish"></app-dish-row>
