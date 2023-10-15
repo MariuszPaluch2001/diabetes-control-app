@@ -1,14 +1,14 @@
 <div class="glucose-row">
   <br />
   <p class="glucose-p">
-    Data pomiaru: {{ insulineSample.timestamp | date : "hh:mm:ss a" }}
+    Timestamp: {{ insulineSample.timestamp | date : "hh:mm:ss a" }}
   </p>
   <p class="glucose-p">
-    Ilość jednostek: {{ insulineSample.units }} ({{
+    Units: {{ insulineSample.units }} ({{
       insulineSample.typeName | lowercase
     }})
   </p>
-  <p class="glucose-p">Opis: {{ insulineSample.description }}</p>
+  <p class="glucose-p">Description: {{ insulineSample.description }}</p>
   <br />
   <a
     class="glucose-sample-link"

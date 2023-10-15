@@ -12,10 +12,10 @@
 >
   <br />
   <p class="glucose-p">
-    Data pomiaru: {{ glucoseSample.timestamp | date : "hh:mm:ss a" }}
+    Timestamp: {{ glucoseSample.timestamp | date : "hh:mm:ss a" }}
   </p>
   <p class="glucose-p">
-    Wartość pomiaru: {{ glucoseSample.value }} {{ glucoseSample.unitName }}
+    Glucose level: {{ glucoseSample.value }} {{ glucoseSample.unitName }}
   </p>
   <br />
   <a
