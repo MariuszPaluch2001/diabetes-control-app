@@ -46,6 +46,8 @@ import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +101,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatMenuModule,
+    MdbCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],
