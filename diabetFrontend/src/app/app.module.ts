@@ -43,7 +43,7 @@ import { SaveGlucoseFormComponent } from './glucose-level/save-form/save-form.co
 import { HomePageComponent } from './home-page/home-page.component';
 import { InsulineChartComponent } from './insuline-dozes/insuline-chart/insuline-chart.component';
 import { InsulineDozesComponent } from './insuline-dozes/insuline-dozes.component';
-import { InsulineRowComponent } from './insuline-dozes/insuline-row/insuline-row.component';
+import { InsulineListComponent } from './insuline-dozes/insuline-list/insuline-list.component';
 import { InsulineSampleComponent } from './insuline-dozes/insuline-sample/insuline-sample.component';
 import { SaveInsulineFormComponent } from './insuline-dozes/save-form/save-form.component';
 import { MealRowComponent } from './meals/meal-row/meal-row.component';
@@ -63,7 +63,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     GlucoseSampleComponent,
     SaveGlucoseFormComponent,
     SaveInsulineFormComponent,
-    InsulineRowComponent,
+    InsulineListComponent,
     InsulineSampleComponent,
     DishesComponent,
     DishRowComponent,
