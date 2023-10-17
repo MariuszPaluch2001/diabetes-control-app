@@ -15,11 +15,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -30,9 +34,10 @@ import { DishRowComponent } from './dishes/dish-row/dish-row.component';
 import { DishSampleComponent } from './dishes/dish-sample/dish-sample.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { SaveDishFormComponent } from './dishes/save-form/save-form.component';
+import { FooterComponent } from './footer/footer.component';
 import { GlucoseChartComponent } from './glucose-level/glucose-chart/glucose-chart.component';
 import { GlucoseLevelComponent } from './glucose-level/glucose-level.component';
-import { GlucoseRowComponent } from './glucose-level/glucose-row/glucose-row.component';
+import { GlucoseListComponent } from './glucose-level/glucose-row/glucose-list.component';
 import { GlucoseSampleComponent } from './glucose-level/glucose-sample/glucose-sample.component';
 import { SaveGlucoseFormComponent } from './glucose-level/save-form/save-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -46,8 +51,6 @@ import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,7 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
     GlucoseLevelComponent,
     MealsComponent,
     HomePageComponent,
-    GlucoseRowComponent,
+    GlucoseListComponent,
     GlucoseSampleComponent,
     SaveGlucoseFormComponent,
     SaveInsulineFormComponent,
@@ -101,7 +104,10 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     MatMenuModule,
-    MdbCheckboxModule
+    MdbCheckboxModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

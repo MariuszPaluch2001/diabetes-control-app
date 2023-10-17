@@ -5,9 +5,22 @@
 .menu {
   display: flex;
   justify-content: flex-end;
-  margin-right: 5%;
 }
 
 .drop-calendar {
   width: 30rem;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
 }
