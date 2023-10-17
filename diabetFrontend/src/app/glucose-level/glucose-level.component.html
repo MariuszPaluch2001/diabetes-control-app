@@ -3,7 +3,7 @@
   <br />
   <app-glucose-chart [glucoseLevels]="glucoseLevels"></app-glucose-chart>
   <br />
-  <div class="menu">
+  <div class="mx-5 menu">
     <a [routerLink]="['/glucose-level/save-form']" style="margin-right: 10px">
       <button mat-raised-button color="primary">
         <mat-icon matPrefix>add</mat-icon>
@@ -28,7 +28,6 @@
     </mat-menu>
   </div>
   <br />
-  <div *ngFor="let level of glucoseLevels">
-    <app-glucose-row [glucoseSample]="level"></app-glucose-row>
-  </div>
+  <h2 class="mx-5">Choosed date: {{ selectedDate | date : "dd/MM/yyyy" }}</h2>
+  <app-glucose-list [glucoseLevels]="glucoseLevels"></app-glucose-list>
 </div>

@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { GlucoseLevel } from 'src/app/models/glucose-level';
-import { Color } from '../glucose-row/enums/colors';
 import { GlucoseNorms } from 'src/app/enums/glucoseNorms';
+import { GlucoseLevel } from 'src/app/models/glucose-level';
+import { Color } from '../glucose-list/enums/colors';
 import { GlucoseLevelService } from '../services/glucose-level.service';
 
 @Component({

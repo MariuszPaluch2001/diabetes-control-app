@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { GlucoseLevel } from '../models/glucose-level';
 import { GlucoseLevelService } from './services/glucose-level.service';
-import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
-
 @Component({
   selector: 'app-glucose-level',
   templateUrl: './glucose-level.component.html',
@@ -11,15 +10,18 @@ import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 })
 export class GlucoseLevelComponent implements OnInit {
   constructor(private glucoseServive: GlucoseLevelService) {}
+
   glucoseLevels: GlucoseLevel[] = [];
 
   ngOnInit(): void {
-    this.glucoseServive.getGlucoseLevels().subscribe((data) => {
-      this.glucoseLevels = data;
+    this.glucoseServive.getGlucoseLevels().subscribe({
+      next: (data) => {
+        this.glucoseLevels = data;
+      },
     });
   }
 
-  selectedDate: any;
+  selectedDate: Date = new Date();
   event: any;
 
   dateClass() {
@@ -29,6 +31,6 @@ export class GlucoseLevelComponent implements OnInit {
   }
 
   onSelect(event: Date | null) {
-    this.selectedDate = event;
+    this.selectedDate = event!;
   }
 }

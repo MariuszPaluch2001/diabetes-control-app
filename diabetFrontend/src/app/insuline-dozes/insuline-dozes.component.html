@@ -3,7 +3,7 @@
   <br />
   <app-insuline-chart [insulineDozes]="insulineDozes"></app-insuline-chart>
   <br />
-  <div class="menu">
+  <div class="mx-5 menu">
     <a [routerLink]="['/insuline-doze/save-form']" style="margin-right: 10px">
       <button mat-raised-button color="primary">
         <mat-icon matPrefix>add</mat-icon>
@@ -28,7 +28,6 @@
     </mat-menu>
   </div>
   <br />
-  <div *ngFor="let doze of insulineDozes">
-    <app-insuline-row [insulineSample]="doze"></app-insuline-row>
-  </div>
+  <h2 class="mx-5">Choosed date: {{ selectedDate | date : "dd/MM/yyyy" }}</h2>
+  <app-insuline-list [insulineDozes]="insulineDozes"></app-insuline-list>
 </div>

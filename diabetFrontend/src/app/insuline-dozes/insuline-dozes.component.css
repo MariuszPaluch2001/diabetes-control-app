@@ -1,9 +1,14 @@
 .menu {
   display: flex;
   justify-content: flex-end;
-  margin-right: 5%;
 }
 
-.link-form {
-  margin-left: 7%;
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
 }
