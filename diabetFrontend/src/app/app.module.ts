@@ -37,7 +37,7 @@ import { SaveDishFormComponent } from './dishes/save-form/save-form.component';
 import { FooterComponent } from './footer/footer.component';
 import { GlucoseChartComponent } from './glucose-level/glucose-chart/glucose-chart.component';
 import { GlucoseLevelComponent } from './glucose-level/glucose-level.component';
-import { GlucoseListComponent } from './glucose-level/glucose-row/glucose-list.component';
+import { GlucoseListComponent } from './glucose-level/glucose-list/glucose-list.component';
 import { GlucoseSampleComponent } from './glucose-level/glucose-sample/glucose-sample.component';
 import { SaveGlucoseFormComponent } from './glucose-level/save-form/save-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
