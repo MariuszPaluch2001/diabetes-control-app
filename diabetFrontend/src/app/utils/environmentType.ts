@@ -1,3 +1,5 @@
-export function isLocalEnvironment(){
-    return true;
+import { isDevMode } from '@angular/core';
+
+export function isLocalEnvironment() {
+  return isDevMode();
 }
