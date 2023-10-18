@@ -1,5 +1,5 @@
-<div
-  class="glucose-sample"
+<mat-card
+  class="m-5"
   [style.background-color]="
     glucoseLevel.value < glucoseNorms.Too_Low
       ? rowColors.Low
@@ -10,12 +10,19 @@
       : rowColors.Too_High
   "
 >
-  <br />
-  <br />
-  <p class="glucose-p">
-    Timestamp: {{ glucoseLevel.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
-  </p>
-  <p class="glucose-p">Glucose level: {{ glucoseLevel.value }} {{ glucoseLevel.unitName }}</p>
-  <br />
-  <br />
-</div>
+  <mat-card-title>
+    <mat-card-title class="m-3">Glucose sample</mat-card-title>
+  </mat-card-title>
+  <mat-card-content
+    style="
+      text-align: center;
+    "
+  >
+  <div class="text-center">
+    <p>
+      Timestamp: {{ glucoseLevel.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
+    </p>
+    <p>Glucose level: {{ glucoseLevel.value }} {{ glucoseLevel.unitName }}</p>
+  </div>
+  </mat-card-content>
+</mat-card>
