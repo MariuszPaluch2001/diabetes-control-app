@@ -8,6 +8,7 @@
 
 .container {
   margin-top: 10%;
+  margin-bottom: 10%;
   padding: 10px;
   align-items: center;
   display: flex;
@@ -16,7 +17,7 @@
 
 .form-element {
   padding: 25px 25px 25px 25px;
-  width: 90%;
+  width: 100%;
 }
 
 .form-title {

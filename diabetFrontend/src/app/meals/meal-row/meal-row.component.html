@@ -1,14 +1,41 @@
-<div class="meal-row">
-  <br />
-  <p class="meal-p">Timestamp: {{ meal.timestamp | date : "hh:mm:ss a" }}</p>
-  <p class="meal-p">Dishname: {{ meal.dish_name }}</p>
-  <p class="meal-p">
-    Quantity: {{ meal.quantity }} {{ meal.dish_unit | lowercase }}
-  </p>
-  <p class="meal-p">Description: {{ meal.description }}</p>
-  <br />
-  <a class="meal-sample-link" [routerLink]="['/meal/list/', meal.Id]">
-    <button mat-raised-button color="primary">Show sample</button>
-  </a>
-  <br /><br />
+<div>
+  <div class="mx-5 mb-5 mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.timestamp | date : "hh:mm:ss a" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dish_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Dish name</th>
+        <td mat-cell *matCellDef="let row">
+          <a routerLink="/dish/list/{{ row.dish }}">
+            {{ row.dish_name }}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.quantity }} {{ row.dish_unit | lowercase }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    ></mat-paginator>
+  </div>
 </div>

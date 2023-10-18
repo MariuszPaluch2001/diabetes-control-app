@@ -17,6 +17,7 @@ export class InsulineDozesComponent implements OnInit {
       this.insulineDozes = data;
     });
   }
+  
   selectedDate: Date = new Date();
   event: any;
 
