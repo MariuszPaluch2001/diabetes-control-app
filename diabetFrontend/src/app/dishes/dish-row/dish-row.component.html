@@ -6,7 +6,12 @@
       alt="Photo of food"
     />
     <div>
-      <p class="dish-p">Dish name: {{ dish.name }}</p>
+      <p class="dish-p">
+        Dish name:
+        <a routerLink="/dish/list/{{ dish.Id }}" class="dish-sample-link">{{
+          dish.name
+        }}</a>
+      </p>
       <p class="dish-p">
         Carbohydrate exchange (CE): {{ dish.carbohydrate_exchange }}
       </p>
