@@ -9,7 +9,7 @@ import { MealService } from '../services/meal.service';
 @Component({
   selector: 'app-meal-sample',
   templateUrl: './meal-sample.component.html',
-  styleUrls: ['./meal-sample.component.css'],
+  styleUrls: ['./meal-sample.component.scss'],
 })
 export class MealSampleComponent {
   id: number = 0;

@@ -1,16 +1,17 @@
-<div class="meal-sample">
-  <br />
-  <p class="meal-p">
-    Timestamp: {{ mealSample.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
-  </p>
-  <p class="meal-p">Dish name: {{ mealSample.dish_name }}</p>
-  <p class="meal-p">
-    Quantity {{ mealSample.quantity }} {{ mealSample.dish_unit }}
-  </p>
-  <p class="meal-p">
-    Carbohydrate Exchange (CE): {{ dish.carbohydrate_exchange }}
-  </p>
-  <p class="meal-p">Glycemic index (GI): {{ dish.glycemic_index }}</p>
-  <p class="meal-p">Description: {{ mealSample.description }}</p>
-  <br /><br />
-</div>
+<mat-card class="m-5">
+  <mat-card-title>
+    <mat-card-title class="m-3">Meal sample</mat-card-title>
+  </mat-card-title>
+  <mat-card-content style="text-align: center">
+    <div class="text-center">
+      <p>
+        Timestamp: {{ mealSample.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
+      </p>
+      <p>Dish name: {{ mealSample.dish_name }}</p>
+      <p>Quantity {{ mealSample.quantity }} {{ mealSample.dish_unit }}</p>
+      <p>Carbohydrate Exchange (CE): {{ dish.carbohydrate_exchange }}</p>
+      <p>Glycemic index (GI): {{ dish.glycemic_index }}</p>
+      <p>Description: {{ mealSample.description }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

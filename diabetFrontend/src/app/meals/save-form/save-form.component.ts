@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DishService } from 'src/app/dishes/services/dish.service';
-import { MealService } from '../services/meal.service';
-import { Meal, MealPost } from 'src/app/models/meal';
-import { Dish } from 'src/app/models/dish';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
+import { DishService } from 'src/app/dishes/services/dish.service';
+import { Dish } from 'src/app/models/dish';
+import { MealPost } from 'src/app/models/meal';
+import { MealService } from '../services/meal.service';
 
 @Component({
   selector: 'app-save-form',
   templateUrl: './save-form.component.html',
-  styleUrls: ['./save-form.component.css'],
+  styleUrls: ['./save-form.component.scss'],
 })
 export class SaveMealFormComponent {
   mealForm!: FormGroup;

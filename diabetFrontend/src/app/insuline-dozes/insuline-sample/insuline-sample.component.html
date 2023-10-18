@@ -1,13 +1,19 @@
-<div class="glucose-sample">
-  <br />
-  <br />
-  <p class="glucose-p">
-    Timestamp: {{ insulineSample.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
-  </p>
-  <p class="glucose-p">
-    Units: {{ insulineSample.units }} ({{ insulineSample.typeName | lowercase }})
-  </p>
-  <p class="glucose-p">Description: {{ insulineSample.description }}</p>
-  <br />
-  <br />
-</div>
+<mat-card class="m-5" style="background-color: blueviolet">
+  <mat-card-title>
+    <mat-card-title class="m-3">Insuline doze</mat-card-title>
+  </mat-card-title>
+  <mat-card-content style="text-align: center">
+    <div class="text-center">
+      <p>
+        Timestamp:
+        {{ insulineSample.timestamp | date : "dd/MM/yyyy hh:mm:ss a" }}
+      </p>
+      <p>
+        Units: {{ insulineSample.units }} ({{
+          insulineSample.typeName | lowercase
+        }})
+      </p>
+      <p>Description: {{ insulineSample.description }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

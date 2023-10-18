@@ -9,7 +9,7 @@ import { GlucoseLevelService } from '../services/glucose-level.service';
 @Component({
   selector: 'app-glucose-sample',
   templateUrl: './glucose-sample.component.html',
-  styleUrls: ['./glucose-sample.component.css'],
+  styleUrls: ['./glucose-sample.component.scss'],
 })
 export class GlucoseSampleComponent implements OnInit {
   rowColors = Color;

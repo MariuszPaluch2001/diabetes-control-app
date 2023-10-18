@@ -8,7 +8,7 @@ import { InsulineDoze } from 'src/app/models/insuline-doze';
 @Component({
   selector: 'app-insuline-list',
   templateUrl: './insuline-list.component.html',
-  styleUrls: ['./insuline-list.component.css'],
+  styleUrls: ['./insuline-list.component.scss'],
 })
 export class InsulineListComponent {
   @Input() insulineDozes!: InsulineDoze[];

@@ -7,7 +7,7 @@ import { InsulineDozesService } from '../services/insuline-dozes.service';
 @Component({
   selector: 'app-insuline-sample',
   templateUrl: './insuline-sample.component.html',
-  styleUrls: ['./insuline-sample.component.css'],
+  styleUrls: ['./insuline-sample.component.scss'],
 })
 export class InsulineSampleComponent {
   id: number = 0;

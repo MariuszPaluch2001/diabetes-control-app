@@ -5,7 +5,7 @@ import { Dish } from '../models/dish';
 @Component({
   selector: 'app-dishes',
   templateUrl: './dishes.component.html',
-  styleUrls: ['./dishes.component.css'],
+  styleUrls: ['./dishes.component.scss'],
 })
 export class DishesComponent {
   constructor(private dishService: DishService) {}

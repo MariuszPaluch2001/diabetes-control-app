@@ -15,7 +15,7 @@ import { Color } from './enums/colors';
 @Component({
   selector: 'app-glucose-list',
   templateUrl: './glucose-list.component.html',
-  styleUrls: ['./glucose-list.component.css'],
+  styleUrls: ['./glucose-list.component.scss'],
 })
 export class GlucoseListComponent implements OnChanges {
   @Input() glucoseLevels!: GlucoseLevel[];

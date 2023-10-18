@@ -8,7 +8,7 @@ import { DishService } from '../services/dish.service';
 @Component({
   selector: 'app-save-form',
   templateUrl: './save-form.component.html',
-  styleUrls: ['./save-form.component.css'],
+  styleUrls: ['./save-form.component.scss'],
 })
 export class SaveDishFormComponent {
   dishForm!: FormGroup;
