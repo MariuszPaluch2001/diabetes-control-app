@@ -12,7 +12,7 @@ import { GlucoseLevel } from 'src/app/models/glucose-level';
 @Component({
   selector: 'app-glucose-chart',
   templateUrl: './glucose-chart.component.html',
-  styleUrls: ['./glucose-chart.component.css'],
+  styleUrls: ['./glucose-chart.component.scss'],
 })
 export class GlucoseChartComponent implements OnChanges, OnInit {
   @Input() glucoseLevels: GlucoseLevel[] = [];

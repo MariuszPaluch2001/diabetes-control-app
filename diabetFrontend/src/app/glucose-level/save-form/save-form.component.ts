@@ -10,7 +10,7 @@ import { DialogFormComponent } from '../../dialog-form/dialog-form.component';
 @Component({
   selector: 'app-glucose-save-form',
   templateUrl: './save-form.component.html',
-  styleUrls: ['./save-form.component.css'],
+  styleUrls: ['./save-form.component.scss'],
 })
 export class SaveGlucoseFormComponent implements OnInit {
   units: GlucoseLevelType[] = [];

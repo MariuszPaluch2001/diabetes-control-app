@@ -11,7 +11,7 @@ import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 @Component({
   selector: 'app-insuline-save-form',
   templateUrl: './save-form.component.html',
-  styleUrls: ['./save-form.component.css'],
+  styleUrls: ['./save-form.component.scss'],
 })
 export class SaveInsulineFormComponent implements OnInit {
   types: InsulineDozeType[] = [];

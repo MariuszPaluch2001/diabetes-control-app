@@ -1,8 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface DialogContext {
   title: string;
@@ -12,7 +9,7 @@ export interface DialogContext {
 @Component({
   selector: 'app-dialog-form',
   templateUrl: './dialog-form.component.html',
-  styleUrls: ['./dialog-form.component.css'],
+  styleUrls: ['./dialog-form.component.scss'],
 })
 export class DialogFormComponent {
   constructor(

@@ -5,7 +5,7 @@ import { GlucoseLevelService } from './services/glucose-level.service';
 @Component({
   selector: 'app-glucose-level',
   templateUrl: './glucose-level.component.html',
-  styleUrls: ['./glucose-level.component.css'],
+  styleUrls: ['./glucose-level.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class GlucoseLevelComponent implements OnInit {

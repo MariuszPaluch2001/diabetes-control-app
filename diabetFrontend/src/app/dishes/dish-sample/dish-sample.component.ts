@@ -6,7 +6,7 @@ import { DishService } from '../services/dish.service';
 @Component({
   selector: 'app-dish-sample',
   templateUrl: './dish-sample.component.html',
-  styleUrls: ['./dish-sample.component.css'],
+  styleUrls: ['./dish-sample.component.scss'],
 })
 export class DishSampleComponent {
   id: number = 0;

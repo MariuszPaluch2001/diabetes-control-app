@@ -13,7 +13,7 @@ import { InsulineDoze } from 'src/app/models/insuline-doze';
 @Component({
   selector: 'app-insuline-chart',
   templateUrl: './insuline-chart.component.html',
-  styleUrls: ['./insuline-chart.component.css'],
+  styleUrls: ['./insuline-chart.component.scss'],
 })
 export class InsulineChartComponent implements OnChanges, OnInit {
   @Input() insulineDozes: InsulineDoze[] = [];

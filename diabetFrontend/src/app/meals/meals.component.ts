@@ -6,7 +6,7 @@ import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 @Component({
   selector: 'app-meals',
   templateUrl: './meals.component.html',
-  styleUrls: ['./meals.component.css'],
+  styleUrls: ['./meals.component.scss'],
 })
 export class MealsComponent {
   constructor(private mealServive: MealService) {}
