@@ -115,7 +115,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # type: ignore # noqa: F821
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = True #change in future
+CORS_ORIGIN_ALLOW_ALL = True #TODO: change in future, temporary for quick deploy on aws
 
 CORS_ORIGIN_WHITELIST = ('http://localhost:4200',)
 

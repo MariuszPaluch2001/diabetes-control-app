@@ -23,3 +23,7 @@ Tech stack (ENG)
 * Material (UI component library)
 * Docker (virtualization)
 * PostgreSQL (data base)
+
+App address
+------
+Link: http://diabetfrontend.s3-website.eu-north-1.amazonaws.com
