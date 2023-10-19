@@ -11,18 +11,22 @@ import { GlucoseLevelService } from './services/glucose-level.service';
 export class GlucoseLevelComponent implements OnInit {
   constructor(private glucoseServive: GlucoseLevelService) {}
 
+  selectedDate: Date = new Date();
+
   glucoseLevels: GlucoseLevel[] = [];
+  allGlucoseLevels: GlucoseLevel[] = [];
 
   ngOnInit(): void {
     this.glucoseServive.getGlucoseLevels().subscribe({
       next: (data) => {
-        this.glucoseLevels = data;
+        this.allGlucoseLevels = data;
+        console.log(data);
+        this.glucoseLevels = this.allGlucoseLevels.filter(
+          (level) => level.timestamp.getDate() == this.selectedDate.getDate()
+        );
       },
     });
   }
-
-  selectedDate: Date = new Date();
-  event: any;
 
   dateClass() {
     return (date: Date): MatCalendarCellCssClasses => {
@@ -32,5 +36,9 @@ export class GlucoseLevelComponent implements OnInit {
 
   onSelect(event: Date | null) {
     this.selectedDate = event!;
+    console.log(this.selectedDate);
+    this.glucoseLevels = this.allGlucoseLevels.filter(
+      (level) => level.timestamp.getDate() == this.selectedDate.getDate()
+    );
   }
 }
