@@ -20,7 +20,6 @@ export class GlucoseLevelComponent implements OnInit {
     this.glucoseServive.getGlucoseLevels().subscribe({
       next: (data) => {
         this.allGlucoseLevels = data;
-        console.log(data);
         this.glucoseLevels = this.allGlucoseLevels.filter(
           (level) => level.timestamp.getDate() == this.selectedDate.getDate()
         );
@@ -36,7 +35,6 @@ export class GlucoseLevelComponent implements OnInit {
 
   onSelect(event: Date | null) {
     this.selectedDate = event!;
-    console.log(this.selectedDate);
     this.glucoseLevels = this.allGlucoseLevels.filter(
       (level) => level.timestamp.getDate() == this.selectedDate.getDate()
     );
