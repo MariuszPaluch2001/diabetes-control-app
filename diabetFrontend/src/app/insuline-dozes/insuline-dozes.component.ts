@@ -10,16 +10,18 @@ import { InsulineDozesService } from './services/insuline-dozes.service';
 })
 export class InsulineDozesComponent implements OnInit {
   constructor(private insulineServive: InsulineDozesService) {}
+  selectedDate: Date = new Date();
   insulineDozes: InsulineDoze[] = [];
+  allInsulineDozes: InsulineDoze[] = [];
 
   ngOnInit(): void {
     this.insulineServive.getInsulineDozes().subscribe((data) => {
-      this.insulineDozes = data;
+      this.allInsulineDozes = data;
+      this.insulineDozes = this.allInsulineDozes.filter(
+        (doze) => doze.timestamp.getDate() == this.selectedDate.getDate()
+      );
     });
   }
-  
-  selectedDate: Date = new Date();
-  event: any;
 
   dateClass() {
     return (date: Date): MatCalendarCellCssClasses => {
@@ -29,5 +31,8 @@ export class InsulineDozesComponent implements OnInit {
 
   onSelect(event: Date | null) {
     this.selectedDate = event!;
+    this.insulineDozes = this.allInsulineDozes.filter(
+      (doze) => doze.timestamp.getDate() == this.selectedDate.getDate()
+    );
   }
 }
