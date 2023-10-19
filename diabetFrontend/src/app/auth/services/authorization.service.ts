@@ -42,7 +42,6 @@ export class AuthorizationService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.loginStatus.next(true);
         }
-        return user;
       })
     );
   }

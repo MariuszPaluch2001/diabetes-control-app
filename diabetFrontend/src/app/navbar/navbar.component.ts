@@ -17,9 +17,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
-    this.authGuard.logout().subscribe((data) => {
-      alert(data);
-      console.log(data);
-    });
+    this.authGuard.logout().subscribe(() => {});
   }
 }
