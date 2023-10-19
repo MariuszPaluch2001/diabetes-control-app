@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { MealService } from './services/meal.service';
-import { Meal } from '../models/meal';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
+import { Meal } from '../models/meal';
+import { MealService } from './services/meal.service';
 
 @Component({
   selector: 'app-meals',
@@ -10,15 +10,18 @@ import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 })
 export class MealsComponent {
   constructor(private mealServive: MealService) {}
+  selectedDate: Date = new Date();
   meals: Meal[] = [];
+  allMeals: Meal[] = [];
 
   ngOnInit(): void {
     this.mealServive.getMeals().subscribe((data) => {
-      this.meals = data;
+      this.allMeals = data;
+      this.meals = this.allMeals.filter(
+        (meal) => meal.timestamp.getDate() == this.selectedDate.getDate()
+      );
     });
   }
-
-  selectedDate: Date = new Date();
 
   dateClass() {
     return (date: Date): MatCalendarCellCssClasses => {
@@ -28,5 +31,8 @@ export class MealsComponent {
 
   onSelect(event: Date | null) {
     this.selectedDate = event!;
+    this.meals = this.allMeals.filter(
+      (meal) => meal.timestamp.getDate() == this.selectedDate.getDate()
+    );
   }
 }
