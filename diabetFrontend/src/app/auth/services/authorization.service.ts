@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { isLocalEnvironment } from 'src/app/utils/environmentType';
-import { LOCAL_API_URL, PRODUCTION_API_URL } from 'src/app/utils/urlApi';
-import { map } from 'rxjs';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
+import { API_URL } from 'src/app/utils/urlApi';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -14,14 +12,13 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthorizationService {
-  API_URL = isLocalEnvironment() ? LOCAL_API_URL : PRODUCTION_API_URL;
   private loginStatus = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) {}
 
   register(email: string, password: string, username: string) {
     return this.http
     .post(
-      `${this.API_URL}/auth/register`,
+      `${API_URL}/auth/register`,
       { email, username, password },
       httpOptions
     )
@@ -38,7 +35,7 @@ export class AuthorizationService {
 
   login(password: string, username: string) {
     return this.http
-    .post(`${this.API_URL}/auth/login`, { username, password }, httpOptions)
+    .post(`${API_URL}/auth/login`, { username, password }, httpOptions)
     .pipe(
       map((user: any) => {
         if (user && user.token) {
@@ -55,7 +52,7 @@ export class AuthorizationService {
     this.loginStatus.next(false);
     localStorage.removeItem('currentUser');
     return this.http.post(
-      `${this.API_URL}/auth/logout`,
+      `${API_URL}/auth/logout`,
       {},
       {
         headers: new HttpHeaders({
