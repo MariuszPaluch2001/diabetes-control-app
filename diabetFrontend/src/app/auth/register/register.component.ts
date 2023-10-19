@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormGroup,
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 import { AuthorizationService } from '../services/authorization.service';
 
 @Component({
@@ -15,7 +20,13 @@ import { AuthorizationService } from '../services/authorization.service';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   fieldRequired: string = 'This field is required';
-  constructor(private auth: AuthorizationService) {}
+  private destroyRef = inject(DestroyRef);
+
+  constructor(
+    private auth: AuthorizationService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -24,10 +35,7 @@ export class RegisterComponent implements OnInit {
   createForm() {
     this.registerForm = new FormGroup({
       username: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [
-        Validators.required,
-        Validators.email,
-      ]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [
         Validators.required,
         this.checkPassword,
@@ -35,6 +43,13 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  openDialog(title: string, description: string): void {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '500px',
+      data: { title: title, text: description },
+    });
+  }
+  
   emaiErrors() {
     return this.registerForm.get('email')!.hasError('required')
       ? 'This field is required'
@@ -67,14 +82,35 @@ export class RegisterComponent implements OnInit {
     return validation;
   }
 
-  onSubmit(formData: FormGroup, formDirective: FormGroupDirective): void {
+  onSubmit(formData: FormGroup): void {
     const email = formData.value.email;
     const password = formData.value.password;
     const username = formData.value.username;
-    this.auth.register(email, password, username).subscribe((data) => {
-      console.log(data);
+    this.auth
+    .register(email, password, username)
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
+      next: () => {
+        this.auth
+        .isLoggedIn()
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(() => {
+          this.openDialog('Successful register', 'You are now registered');
+        });
+      },
+      error: (err: HttpErrorResponse) => {
+        if (err.status == 400) {
+          this.openDialog(
+            'Not registered',
+            'User with that username already exists'
+          );
+        } else {
+          this.openDialog('Not registered', err.message);
+        }
+      },
+      complete: () => {
+        this.router.navigate(['/home']);
+      },
     });
-    formDirective.resetForm();
-    this.registerForm.reset();
   }
 }

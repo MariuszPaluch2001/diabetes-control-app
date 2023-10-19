@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { AuthorizationService } from '../auth/services/authorization.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { DialogFormComponent } from '../dialog-form/dialog-form.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +11,13 @@ import { AuthorizationService } from '../auth/services/authorization.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authGuard: AuthorizationService) {}
   isLoggedIn: boolean = false;
+  private destroyRef = inject(DestroyRef);
+  constructor(
+    private authGuard: AuthorizationService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.authGuard.isLoggedIn().subscribe((data: boolean) => {
@@ -16,10 +25,24 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  openDialog(title: string, description: string): void {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '500px',
+      data: { title: title, text: description },
+    });
+  }
+
   logout(): void {
-    this.authGuard.logout().subscribe((data) => {
-      alert(data);
-      console.log(data);
+    this.authGuard
+    .logout()
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
+      next: () => {
+        this.openDialog('Logged out', 'You are now logged out');
+      },
+      complete: () => {
+        this.router.navigate(['/home']);
+      },
     });
   }
 }

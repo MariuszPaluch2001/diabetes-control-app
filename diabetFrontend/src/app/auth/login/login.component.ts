@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  Validators,
-} from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { DialogFormComponent } from 'src/app/dialog-form/dialog-form.component';
 import { AuthorizationService } from '../services/authorization.service';
 
 @Component({
@@ -15,7 +15,13 @@ import { AuthorizationService } from '../services/authorization.service';
 export class LoginComponent {
   loginForm!: FormGroup;
   fieldRequired: string = 'This field is required';
-  constructor(private auth: AuthorizationService) {}
+  private destroyRef = inject(DestroyRef);
+
+  constructor(
+    private auth: AuthorizationService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -28,6 +34,13 @@ export class LoginComponent {
         Validators.required,
         this.checkPassword,
       ]),
+    });
+  }
+
+  openDialog(title: string, description: string): void {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '500px',
+      data: { title: title, text: description },
     });
   }
 
@@ -53,12 +66,32 @@ export class LoginComponent {
       (this.loginForm.get(input)!.dirty || this.loginForm.get(input)!.touched);
     return validation;
   }
-
-  onSubmit(formData: FormGroup, formDirective: FormGroupDirective): void {
+  
+  onSubmit(formData: FormGroup): void {
     const password = formData.value.password;
     const username = formData.value.username;
-    this.auth.login(password, username).subscribe((data) => console.log(data));
-    formDirective.resetForm();
-    this.loginForm.reset();
+    this.auth
+    .login(password, username)
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
+      next: () => {
+        this.auth
+        .isLoggedIn()
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(() => {
+          this.openDialog('Logged in', 'You are now logged in');
+        });
+      },
+      error: (err: HttpErrorResponse) => {
+        if (err.status == 404) {
+          this.openDialog('Not logged in', "This account doesn't exist");
+        } else {
+          this.openDialog('Not logged in', err.message);
+        }
+      },
+      complete: () => {
+        this.router.navigate(['/home']);
+      },
+    });
   }
 }
