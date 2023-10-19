@@ -15,6 +15,8 @@ import { AuthorizationService } from '../services/authorization.service';
 export class LoginComponent {
   loginForm!: FormGroup;
   fieldRequired: string = 'This field is required';
+  private destroyRef = inject(DestroyRef);
+
   constructor(
     private auth: AuthorizationService,
     private dialog: MatDialog,
@@ -64,7 +66,7 @@ export class LoginComponent {
       (this.loginForm.get(input)!.dirty || this.loginForm.get(input)!.touched);
     return validation;
   }
-  private destroyRef = inject(DestroyRef);
+  
   onSubmit(formData: FormGroup): void {
     const password = formData.value.password;
     const username = formData.value.username;
