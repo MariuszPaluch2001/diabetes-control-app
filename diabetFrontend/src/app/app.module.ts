@@ -46,7 +46,7 @@ import { InsulineDozesComponent } from './insuline-dozes/insuline-dozes.componen
 import { InsulineListComponent } from './insuline-dozes/insuline-list/insuline-list.component';
 import { InsulineSampleComponent } from './insuline-dozes/insuline-sample/insuline-sample.component';
 import { SaveInsulineFormComponent } from './insuline-dozes/save-form/save-form.component';
-import { MealRowComponent } from './meals/meal-row/meal-row.component';
+import { MealRowComponent } from './meals/meal-list/meal-list.component';
 import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
