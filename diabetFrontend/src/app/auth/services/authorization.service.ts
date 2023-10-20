@@ -13,6 +13,7 @@ const httpOptions = {
 })
 export class AuthorizationService {
   private loginStatus = new BehaviorSubject<boolean>(false);
+  private userName = new BehaviorSubject<string | null>(null);
   constructor(private http: HttpClient) {}
 
   register(email: string, password: string, username: string) {
@@ -27,6 +28,7 @@ export class AuthorizationService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.loginStatus.next(true);
+          this.userName.next(user.username);
         }
         return user;
       })
@@ -41,6 +43,7 @@ export class AuthorizationService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.loginStatus.next(true);
+          this.userName.next(user.username);
         }
       })
     );
@@ -50,6 +53,7 @@ export class AuthorizationService {
     const token = JSON.parse(localStorage.getItem('currentUser')!);
     this.loginStatus.next(false);
     localStorage.removeItem('currentUser');
+    this.userName.next(null);
     return this.http.post(
       `${API_URL}/auth/logout`,
       {},
@@ -64,5 +68,9 @@ export class AuthorizationService {
 
   isLoggedIn() {
     return this.loginStatus.asObservable();
+  }
+
+  getUserName() {
+    return this.userName.asObservable();
   }
 }

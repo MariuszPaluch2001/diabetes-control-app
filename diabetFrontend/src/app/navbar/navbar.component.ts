@@ -12,6 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
+  userName: string | null = null;
   private destroyRef = inject(DestroyRef);
   constructor(
     private authGuard: AuthorizationService,
@@ -22,6 +23,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.authGuard.isLoggedIn().subscribe((data: boolean) => {
       this.isLoggedIn = data;
+    });
+    this.authGuard.getUserName().subscribe((userName) => {
+      this.userName = userName;
     });
   }
 
