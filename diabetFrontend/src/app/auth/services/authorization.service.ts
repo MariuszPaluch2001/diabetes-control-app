@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { getToken } from 'src/app/utils/getCredentials';
 import { API_URL } from 'src/app/utils/urlApi';
 import { LocalStorageControlService } from './local-storage-control.service';
 const httpOptions = {

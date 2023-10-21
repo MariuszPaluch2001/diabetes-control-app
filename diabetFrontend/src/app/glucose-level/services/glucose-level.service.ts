@@ -8,17 +8,17 @@ import {
 } from 'src/app/models/glucose-level';
 import { API_URL } from 'src/app/utils/urlApi';
 import { UrlParts } from './enums/url-parts';
-import { getToken } from 'src/app/utils/getCredentials';
+import { LocalStorageControlService } from 'src/app/auth/services/local-storage-control.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GlucoseLevelService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private storageService: LocalStorageControlService) {}
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Token ' + getToken(),
+      Authorization: 'Token ' + this.storageService.getToken(),
     }),
   };
 
