@@ -16,19 +16,21 @@ class GlucoseTypes(APIView):
 
 
 class GlucosesList(APIView):
-
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
-        glucose_levels = GlucoseLevel.objects.all()
+        glucose_levels = GlucoseLevel.objects.filter(user=request.user)
         glucose_serializer = GlucoseLevelSerializer(glucose_levels, many=True)
         return JsonResponse(glucose_serializer.data, safe=False)
 
     def post(self, request: HttpRequest, format=None) -> JsonResponse:
         glucose_level_data = JSONParser().parse(request)
-        glucose_serializer = GlucoseLevelSerializer(data=glucose_level_data)
+        glucose_serializer = GlucoseLevelSerializer(data=glucose_level_data, context=self.get_serializer_context())
         if glucose_serializer.is_valid():
             glucose_serializer.save()
             return JsonResponse('Save Successfully.', safe=False)
         return JsonResponse(glucose_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_serializer_context(self):
+        return { 'user': self.request.user }
 
 
 class GlucoseDetail(APIView):
@@ -41,6 +43,8 @@ class GlucoseDetail(APIView):
 
     def get(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         glucose_level = self.get_object(id)
+        if glucose_level.user != request.user:
+            return JsonResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED, safe=False)
         glucose_serializer = GlucoseLevelSerializer(glucose_level)
         return JsonResponse(glucose_serializer.data, safe=False)
 

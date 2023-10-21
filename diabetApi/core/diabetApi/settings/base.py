@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'core.insulineDozes.apps.InsulinedozesConfig',
     'core.glucoseLevelApp.apps.GlucoselevelappConfig',
     'core.mealApp.apps.MealappConfig',
+    'core.accounts.apps.AccountsConfig',
     'rest_framework',
     'rest_framework.authtoken']
 
@@ -127,3 +128,5 @@ CSRF_COOKIE_SECURE = False
 SECURE_HSTS_SECONDS = None
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_FRAME_DENY = False
+
+AUTH_USER_MODEL = 'accounts.User'
