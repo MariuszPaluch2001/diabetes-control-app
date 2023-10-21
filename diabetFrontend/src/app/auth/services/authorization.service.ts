@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
+import { getToken } from 'src/app/utils/getCredentials';
 import { API_URL } from 'src/app/utils/urlApi';
+import { LocalStorageControlService } from './local-storage-control.service';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -14,7 +16,24 @@ const httpOptions = {
 export class AuthorizationService {
   private loginStatus = new BehaviorSubject<boolean>(false);
   private userName = new BehaviorSubject<string | null>(null);
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private storageService: LocalStorageControlService
+  ) {
+    const token = this.storageService.getToken();
+    this.userName.next(this.storageService.getUserName());
+    if (this.storageService.isExist()) {
+      this.http
+      .get(`${API_URL}/auth/test_token`, {
+        headers: new HttpHeaders({
+          Authorization: `Token ${token}`,
+        }),
+      })
+      .subscribe((resp: any) => {
+        this.loginStatus.next(resp.auth);
+      });
+    }
+  }
 
   register(email: string, password: string, username: string) {
     return this.http
@@ -26,7 +45,7 @@ export class AuthorizationService {
     .pipe(
       map((user: any) => {
         if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.storageService.setCredentials(user);
           this.loginStatus.next(true);
           this.userName.next(user.username);
         }
@@ -41,7 +60,7 @@ export class AuthorizationService {
     .pipe(
       map((user: any) => {
         if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.storageService.setCredentials(user);
           this.loginStatus.next(true);
           this.userName.next(user.username);
         }
@@ -50,17 +69,17 @@ export class AuthorizationService {
   }
 
   logout() {
-    const token = JSON.parse(localStorage.getItem('currentUser')!);
+    const token = this.storageService.getToken();
     this.loginStatus.next(false);
-    localStorage.removeItem('currentUser');
     this.userName.next(null);
+    this.storageService.deleteCredentials();
     return this.http.post(
       `${API_URL}/auth/logout`,
       {},
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          Authorization: `Token ${token.token}`,
+          Authorization: `Token ${token}`,
         }),
       }
     );
