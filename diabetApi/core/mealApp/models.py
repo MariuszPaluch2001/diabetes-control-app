@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Dish(models.Model):
@@ -6,7 +7,11 @@ class Dish(models.Model):
     name = models.CharField(max_length=100, blank=True, default='')
     glycemic_index = models.IntegerField(null=False, blank=False)
     carbohydrate_exchange = models.IntegerField(null=False, blank=False)
-
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    
     class UnitName(models.TextChoices):
         GRAMS = '1', 'GRAMS'
         UNITS = '2', 'UNITS'

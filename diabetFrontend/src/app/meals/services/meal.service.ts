@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { LocalStorageControlService } from 'src/app/auth/services/local-storage-control.service';
 import { Meal, MealPost } from 'src/app/models/meal';
 import { API_URL } from 'src/app/utils/urlApi';
 
@@ -8,10 +9,23 @@ import { API_URL } from 'src/app/utils/urlApi';
   providedIn: 'root',
 })
 export class MealService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private storageService: LocalStorageControlService
+  ) {}
+
+  createHeader() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + this.storageService.getToken(),
+      }),
+    };
+  }
 
   getMeals(): Observable<Meal[]> {
-    return this.http.get<Meal[]>(`${API_URL}/mealApp/meal/`).pipe(
+    const httpOptions = this.createHeader();
+    return this.http.get<Meal[]>(`${API_URL}/mealApp/meal/`, httpOptions).pipe(
       map((items: Meal[]) => {
         items.forEach((item) => {
           item.timestamp = new Date(item.timestamp);
@@ -22,7 +36,10 @@ export class MealService {
   }
 
   getMealById(id: number): Observable<Meal> {
-    return this.http.get<Meal>(`${API_URL}/mealApp/meal/${id}`).pipe(
+    const httpOptions = this.createHeader();
+    return this.http
+    .get<Meal>(`${API_URL}/mealApp/meal/${id}`, httpOptions)
+    .pipe(
       map((item: Meal) => {
         item.timestamp = new Date(item.timestamp);
         return item;
@@ -31,6 +48,11 @@ export class MealService {
   }
 
   saveMeal(meal: MealPost): Observable<any> {
-    return this.http.post<MealPost>(`${API_URL}/mealApp/meal/`, meal);
+    const httpOptions = this.createHeader();
+    return this.http.post<MealPost>(
+      `${API_URL}/mealApp/meal/`,
+      meal,
+      httpOptions
+    );
   }
 }

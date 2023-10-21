@@ -14,19 +14,26 @@ import { LocalStorageControlService } from 'src/app/auth/services/local-storage-
   providedIn: 'root',
 })
 export class GlucoseLevelService {
-  constructor(private http: HttpClient, private storageService: LocalStorageControlService) {}
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Token ' + this.storageService.getToken(),
-    }),
-  };
+  constructor(
+    private http: HttpClient,
+    private storageService: LocalStorageControlService
+  ) {}
+
+  createHeader() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + this.storageService.getToken(),
+      }),
+    };
+  }
 
   getGlucoseLevelById(id: number): Observable<GlucoseLevel> {
+    const httpOptions = this.createHeader();
     return this.http
     .get<GlucoseLevel>(
       `${API_URL}/${UrlParts.GLUCOSE_LEVEL_URL}/${id}`,
-      this.httpOptions
+      httpOptions
     )
     .pipe(
       map((item: GlucoseLevel) => {
@@ -37,10 +44,11 @@ export class GlucoseLevelService {
   }
 
   getGlucoseLevels(): Observable<GlucoseLevel[]> {
+    const httpOptions = this.createHeader();
     return this.http
     .get<GlucoseLevel[]>(
       `${API_URL}/${UrlParts.GLUCOSE_LEVEL_URL}/`,
-      this.httpOptions
+      httpOptions
     )
     .pipe(
       map((items: GlucoseLevel[]) => {
@@ -59,10 +67,11 @@ export class GlucoseLevelService {
   }
 
   saveGlucoseLevel(data: GlucoseLevelPost): Observable<any> {
+    const httpOptions = this.createHeader();
     return this.http.post(
       `${API_URL}/${UrlParts.GLUCOSE_LEVEL_URL}/`,
       data,
-      this.httpOptions
+      httpOptions
     );
   }
 }

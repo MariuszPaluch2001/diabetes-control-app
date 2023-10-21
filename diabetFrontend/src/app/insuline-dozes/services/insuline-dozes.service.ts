@@ -18,16 +18,19 @@ export class InsulineDozesService {
     private storageService: LocalStorageControlService
   ) {}
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Token ' + this.storageService.getToken(),
-    }),
-  };
+  createHeader() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + this.storageService.getToken(),
+      }),
+    };
+  }
 
   getInsulineDozeById(id: number): Observable<InsulineDoze> {
+    const httpOptions = this.createHeader();
     return this.http
-    .get<InsulineDoze>(`${API_URL}/dozes/${id}`, this.httpOptions)
+    .get<InsulineDoze>(`${API_URL}/dozes/${id}`, httpOptions)
     .pipe(
       map((item: InsulineDoze) => {
         item.timestamp = new Date(item.timestamp);
@@ -37,9 +40,8 @@ export class InsulineDozesService {
   }
 
   getInsulineDozes(): Observable<InsulineDoze[]> {
-    return this.http
-    .get<InsulineDoze[]>(`${API_URL}/dozes/`, this.httpOptions)
-    .pipe(
+    const httpOptions = this.createHeader();
+    return this.http.get<InsulineDoze[]>(`${API_URL}/dozes/`, httpOptions).pipe(
       map((items: InsulineDoze[]) => {
         items.forEach((item) => {
           item.timestamp = new Date(item.timestamp);
@@ -54,10 +56,11 @@ export class InsulineDozesService {
   }
 
   saveInsulineDoze(doze: InsulineDozePost): Observable<any> {
+    const httpOptions = this.createHeader();
     return this.http.post<InsulineDozePost>(
       `${API_URL}/dozes/`,
       doze,
-      this.httpOptions
+      httpOptions
     );
   }
 }
