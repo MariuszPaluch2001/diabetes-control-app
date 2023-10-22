@@ -51,6 +51,7 @@ import { MealSampleComponent } from './meals/meal-sample/meal-sample.component';
 import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NoContentComponent } from './no-content/no-content.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     NavbarComponent,
     FooterComponent,
+    NoContentComponent,
   ],
   imports: [
     BrowserModule,
