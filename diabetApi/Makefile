@@ -26,6 +26,10 @@ run-server:
 superuser:
 	poetry run python -m core.manage createsuperuser
 
+.PHONY: test
+test:
+	poetry run pytest -vv -rs -n auto --show-capture=no
+
 .PHONY: update
 update: install migrate	install-pre-commit ;
 

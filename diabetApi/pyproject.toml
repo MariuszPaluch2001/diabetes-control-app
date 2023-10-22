@@ -5,7 +5,7 @@ description = ""
 authors = ["Mariusz Paluch <mariuszpaluch001@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "core"}]
+packages = [{ include = "core" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,6 +19,10 @@ pydantic = "^2.4.2"
 pynacl = "^1.5.0"
 psycopg2-binary = "^2.9.9"
 daphne = "^4.0.0"
+pytest = "^7.4.2"
+pytest-xdist = "^3.3.1"
+pytest-django = "^4.5.2"
+model-bakery = "^1.16.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -29,6 +33,13 @@ colorlog = "^6.7.0"
 [tool.isort]
 line_length = 119
 multi_line_output = 5
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.diabetApi.settings"
+django_find_project = false
+python_files = "test_*.py"
+testpaths = ["cooking_core"]
+filterwarnings = "ignore::DeprecationWarning:^(?!node\\.).*:"
 
 [tool.yapf]
 align_closing_bracket_with_visual_indent = true

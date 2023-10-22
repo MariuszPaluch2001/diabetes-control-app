@@ -26,7 +26,7 @@ class GlucosesList(APIView):
         glucose_serializer = GlucoseLevelSerializer(data=glucose_level_data, context=self.get_serializer_context())
         if glucose_serializer.is_valid():
             glucose_serializer.save()
-            return JsonResponse('Save Successfully.', safe=False)
+            return JsonResponse('Save Successfully.', safe=False, status=status.HTTP_200_OK)
         return JsonResponse(glucose_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_serializer_context(self):
