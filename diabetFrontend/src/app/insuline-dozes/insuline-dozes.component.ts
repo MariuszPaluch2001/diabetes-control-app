@@ -11,15 +11,21 @@ import { InsulineDozesService } from './services/insuline-dozes.service';
 export class InsulineDozesComponent implements OnInit {
   constructor(private insulineServive: InsulineDozesService) {}
   selectedDate: Date = new Date();
-  insulineDozes: InsulineDoze[] = [];
-  allInsulineDozes: InsulineDoze[] = [];
+  insulineDozes!: InsulineDoze[];
+  allInsulineDozes!: InsulineDoze[];
 
   ngOnInit(): void {
-    this.insulineServive.getInsulineDozes().subscribe((data) => {
-      this.allInsulineDozes = data;
-      this.insulineDozes = this.allInsulineDozes.filter(
-        (doze) => doze.timestamp.getDate() == this.selectedDate.getDate()
-      );
+    this.insulineServive.getInsulineDozes().subscribe({
+      next: (data) => {
+        this.allInsulineDozes = data;
+        this.insulineDozes = this.allInsulineDozes.filter(
+          (doze) => doze.timestamp.getDate() == this.selectedDate.getDate()
+        );
+      },
+      error: () => {
+        this.allInsulineDozes = [];
+        this.insulineDozes = [];
+      },
     });
   }
 

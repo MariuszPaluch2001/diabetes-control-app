@@ -11,15 +11,21 @@ import { MealService } from './services/meal.service';
 export class MealsComponent {
   constructor(private mealServive: MealService) {}
   selectedDate: Date = new Date();
-  meals: Meal[] = [];
-  allMeals: Meal[] = [];
+  meals!: Meal[];
+  allMeals!: Meal[];
 
   ngOnInit(): void {
-    this.mealServive.getMeals().subscribe((data) => {
-      this.allMeals = data;
-      this.meals = this.allMeals.filter(
-        (meal) => meal.timestamp.getDate() == this.selectedDate.getDate()
-      );
+    this.mealServive.getMeals().subscribe({
+      next: (data) => {
+        this.allMeals = data;
+        this.meals = this.allMeals.filter(
+          (meal) => meal.timestamp.getDate() == this.selectedDate.getDate()
+        );
+      },
+      error: () => {
+        this.allMeals = [];
+        this.meals = [];
+      },
     });
   }
 

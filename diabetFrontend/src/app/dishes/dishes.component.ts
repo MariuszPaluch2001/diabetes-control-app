@@ -9,11 +9,16 @@ import { Dish } from '../models/dish';
 })
 export class DishesComponent {
   constructor(private dishService: DishService) {}
-  dishes: Dish[] = [];
+  dishes!: Dish[];
 
   ngOnInit(): void {
-    this.dishService.getDishes().subscribe((data) => {
-      this.dishes = data;
+    this.dishService.getDishes().subscribe({
+      next: (data) => {
+        this.dishes = data;
+      },
+      error: () => {
+        this.dishes = [];
+      },
     });
   }
 }
