@@ -13,8 +13,8 @@ export class GlucoseLevelComponent implements OnInit {
 
   selectedDate: Date = new Date();
 
-  glucoseLevels: GlucoseLevel[] = [];
-  allGlucoseLevels: GlucoseLevel[] = [];
+  glucoseLevels!: GlucoseLevel[];
+  allGlucoseLevels!: GlucoseLevel[];
 
   ngOnInit(): void {
     this.glucoseServive.getGlucoseLevels().subscribe({
@@ -23,6 +23,10 @@ export class GlucoseLevelComponent implements OnInit {
         this.glucoseLevels = this.allGlucoseLevels.filter(
           (level) => level.timestamp.getDate() == this.selectedDate.getDate()
         );
+      },
+      error: () => {
+        this.glucoseLevels = [];
+        this.allGlucoseLevels = [];
       },
     });
   }

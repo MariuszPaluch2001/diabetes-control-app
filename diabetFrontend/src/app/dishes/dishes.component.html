@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="dishes.length > 0; else nodata_content">
   <br />
   <div class="mx-5 menu">
     <a [routerLink]="['/dish/save-form']">
@@ -12,6 +12,24 @@
   <div *ngFor="let dish of dishes">
     <app-dish-row [dish]="dish"></app-dish-row>
   </div>
-  <br/>
-  <br/>
+  <br />
+  <br />
 </div>
+
+<ng-template #nodata_content>
+  <br />
+  <br />
+  <app-no-content></app-no-content>
+  <br />
+  <div style="text-align: center">
+    <a [routerLink]="['/dish/save-form']">
+      <button mat-raised-button color="primary">
+        <mat-icon matPrefix>add</mat-icon>
+        Add new sample
+      </button>
+    </a>
+  </div>
+
+  <br />
+  <br />
+</ng-template>
