@@ -24,13 +24,13 @@ jobs:
         poetry-version: 1.4.2
 
     - name: Install Dependencies
-      run: make install @ make install-pre-commit
+      run: cd diabetApi && make install @ make install-pre-commit
 
     - name: Lint
-      run: make lint
+      run: cd diabetApi && make lint
 
     - name: Test
-      run: make test
+      run: cd diabetApi && make test
       env:
         COOKING_CORE_SETTING_DATABASES: '{"default": {"HOST": "db"}}'
-        COOKING_CORE_SETTING_LOCAL_SETTINGS_PATH: "./core/diabetApi/settings/templates/settings.github.py"
+        COOKING_CORE_SETTING_LOCAL_SETTINGS_PATH: "./diabetApi/core/diabetApi/settings/templates/settings.github.py"
