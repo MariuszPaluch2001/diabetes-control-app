@@ -5,6 +5,7 @@ Project setup instructions here.
 
 mkdir -p local
 cp core/diabetApi/settings/templates/settings.dev.py ./local/settings.dev.py
+cp core/diabetApi/settings/templates/settings.unittests.py ./local/settings.unittests.py
 
 Deploy info
 ==============
