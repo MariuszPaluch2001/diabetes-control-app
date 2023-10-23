@@ -29,8 +29,9 @@ jobs:
       - name: Test
         run: cd diabetApi && make test
         env:
-          COOKING_CORE_SETTING_DATABASES: '{"default": {"HOST": "db"}}'
-          COOKING_CORE_SETTING_LOCAL_SETTINGS_PATH: "./diabetApi/core/diabetApi/settings/templates/settings.github.py"
+          CORESETTINGS_DATABASES: '{"default": {"HOST": "db"}}'
+          CORESETTINGS_LOCAL_SETTINGS_PATH: "./diabetApi/core/diabetApi/settings/templates/settings.github.py"
+          PYTEST_RUNNING: "true"
       
       - name: Lint
         run: cd diabetApi && make lint
