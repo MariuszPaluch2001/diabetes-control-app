@@ -9,6 +9,7 @@ from .serializers import DishSerializer, MealSerializer
 
 # Create your views here.
 
+
 class DishUnits(APIView):
 
     def get(request: HttpRequest, id: int = 0) -> JsonResponse:
@@ -32,8 +33,9 @@ class DishesList(APIView):
         return JsonResponse(dish_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_serializer_context(self):
-        return { 'user': self.request.user }
-    
+        return {'user': self.request.user}
+
+
 class DishDetail(APIView):
 
     def get_object(self, id: int) -> Dish:
@@ -45,7 +47,7 @@ class DishDetail(APIView):
     def get(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         dish = self.get_object(id)
         if dish.user != request.user:
-            return JsonResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED, safe=False)
+            return JsonResponse('Unauthorized', status=status.HTTP_401_UNAUTHORIZED, safe=False)
         dish_serializer = DishSerializer(dish)
         return JsonResponse(dish_serializer.data, safe=False)
 
@@ -63,6 +65,7 @@ class DishDetail(APIView):
         dish.delete()
         return JsonResponse('Deleted Successfully.', safe=False, status=status.HTTP_204_NO_CONTENT)
 
+
 class MealsList(APIView):
 
     def get(self, request: HttpRequest, format=None) -> JsonResponse:
@@ -73,13 +76,14 @@ class MealsList(APIView):
     def post(self, request: HttpRequest, format=None) -> JsonResponse:
         meal_data = JSONParser().parse(request)
         meal_serializer = MealSerializer(data=meal_data)
-        related_dish = Dish.objects.get(Id = meal_data['dish'])
+        related_dish = Dish.objects.get(Id=meal_data['dish'])
         if related_dish.user != request.user:
-            return JsonResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED, safe=False)
+            return JsonResponse('Unauthorized', status=status.HTTP_401_UNAUTHORIZED, safe=False)
         if meal_serializer.is_valid():
             meal_serializer.save()
             return JsonResponse('Save Successfully.', safe=False)
         return JsonResponse(meal_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class MealDetail(APIView):
 
@@ -91,9 +95,9 @@ class MealDetail(APIView):
 
     def get(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         meal = self.get_object(id)
-        related_dish = Dish.objects.get(Id = meal.dish.Id)
+        related_dish = Dish.objects.get(Id=meal.dish.Id)
         if related_dish.user != request.user:
-            return JsonResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED, safe=False)
+            return JsonResponse('Unauthorized', status=status.HTTP_401_UNAUTHORIZED, safe=False)
         meal_serializer = MealSerializer(meal)
         return JsonResponse(meal_serializer.data, safe=False)
 
@@ -110,5 +114,3 @@ class MealDetail(APIView):
         meal = self.get_object(id)
         meal.delete()
         return JsonResponse('Deleted Successfully.', safe=False, status=status.HTTP_204_NO_CONTENT)
-
-

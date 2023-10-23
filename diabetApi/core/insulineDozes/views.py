@@ -33,7 +33,8 @@ class InslulineDozesList(APIView):
         return JsonResponse(doze_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_serializer_context(self):
-        return { 'user': self.request.user }
+        return {'user': self.request.user}
+
 
 class InsluineDozeDetail(APIView):
 
@@ -46,7 +47,7 @@ class InsluineDozeDetail(APIView):
     def get(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         doze = self.get_object(id)
         if doze.user != request.user:
-            return JsonResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED, safe=False)
+            return JsonResponse('Unauthorized', status=status.HTTP_401_UNAUTHORIZED, safe=False)
         doze_serializer = DozeSerializer(doze)
         return JsonResponse(doze_serializer.data, safe=False)
 

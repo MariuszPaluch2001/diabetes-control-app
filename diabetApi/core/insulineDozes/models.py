@@ -11,7 +11,7 @@ class Doze(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    
+
     class InsulineType(models.TextChoices):
         RAPID = '1', 'RAPID-ACTING'
         LONG = '2', 'LONG-RUNNING'

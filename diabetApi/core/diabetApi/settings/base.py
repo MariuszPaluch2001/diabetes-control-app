@@ -6,20 +6,12 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'daphne',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'corsheaders',
-    'core.insulineDozes.apps.InsulinedozesConfig',
-    'core.glucoseLevelApp.apps.GlucoselevelappConfig',
-    'core.mealApp.apps.MealappConfig',
-    'core.accounts.apps.AccountsConfig',
-    'rest_framework',
-    'rest_framework.authtoken']
+    'daphne', 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions',
+    'django.contrib.messages', 'django.contrib.staticfiles', 'corsheaders',
+    'core.insulineDozes.apps.InsulinedozesConfig', 'core.glucoseLevelApp.apps.GlucoselevelappConfig',
+    'core.mealApp.apps.MealappConfig', 'core.accounts.apps.AccountsConfig', 'rest_framework',
+    'rest_framework.authtoken'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +50,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.diabetApi.wsgi.application'
-ASGI_APPLICATION = "core.diabetApi.asgi.application"
+ASGI_APPLICATION = 'core.diabetApi.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -116,7 +108,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # type: ignore # noqa: F821
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = True #TODO: change in future, temporary for quick deploy on aws
+CORS_ORIGIN_ALLOW_ALL = True  # TODO: change in future, temporary for quick deploy on aws
 
 CORS_ORIGIN_WHITELIST = ('http://localhost:4200',)
 

@@ -20,4 +20,4 @@ if not os.path.isabs(LOCAL_SETTINGS_PATH):
 include('base.py', 'logging.py', 'custom.py', optional(LOCAL_SETTINGS_PATH), 'envvars.py', 'docker.py')
 
 if not is_pytest_running():
-    assert SECRET_KEY is not NotImplemented # type: ignore # noqa: F821
+    assert SECRET_KEY is not NotImplemented  # type: ignore # noqa: F821

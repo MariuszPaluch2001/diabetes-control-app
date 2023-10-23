@@ -5,3 +5,4 @@ local/
 diabetApi/staticfiles/
 .env
 .mypy_cache/
+.pytest_cache/
