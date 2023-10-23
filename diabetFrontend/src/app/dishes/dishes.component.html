@@ -1,4 +1,4 @@
-<div *ngIf="dishes.length > 0; else nodata_content">
+<div *ngIf="!dishes || dishes.length > 0; else nodata_content">
   <br />
   <div class="mx-5 menu">
     <a [routerLink]="['/dish/save-form']">

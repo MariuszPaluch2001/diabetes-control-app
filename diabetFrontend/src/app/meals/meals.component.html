@@ -1,4 +1,4 @@
-<div *ngIf="allMeals.length > 0; else nodata_content">
+<div *ngIf="!allMeals || allMeals.length > 0; else nodata_content">
   <br />
   <br />
   <div class="mx-5 menu">
