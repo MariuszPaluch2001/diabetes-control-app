@@ -1,5 +1,5 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 
 
 class Dish(models.Model):
@@ -11,7 +11,7 @@ class Dish(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    
+
     class UnitName(models.TextChoices):
         GRAMS = '1', 'GRAMS'
         UNITS = '2', 'UNITS'
