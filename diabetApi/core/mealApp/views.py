@@ -91,7 +91,7 @@ class MealDetail(APIView):
 
     def get(self, request: HttpRequest, id: int, format=None) -> JsonResponse:
         meal = self.get_object(id)
-        related_dish = Dish.objects.get(Id = meal.dish)
+        related_dish = Dish.objects.get(Id = meal.dish.Id)
         if related_dish.user != request.user:
             return JsonResponse("Unauthorized", status=status.HTTP_401_UNAUTHORIZED, safe=False)
         meal_serializer = MealSerializer(meal)
