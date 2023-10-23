@@ -24,7 +24,7 @@ jobs:
           poetry-version: 1.4.2
 
       - name: Install Dependencies
-        run: cd diabetApi && make install @ make install-pre-commit
+        run: cd diabetApi && make install && make install-pre-commit
 
       - name: Lint
         run: cd diabetApi && make lint
