@@ -38,7 +38,6 @@ multi_line_output = 5
 DJANGO_SETTINGS_MODULE = "core.diabetApi.settings"
 django_find_project = false
 python_files = "test_*.py"
-testpaths = ["core"]
 filterwarnings = "ignore::DeprecationWarning:^(?!node\\.).*:"
 
 [tool.yapf]
@@ -50,7 +49,7 @@ dedent_closing_brackets = true
 
 [tool.flake8]
 max-line-length = 120
-exclude = [".git", "__pycache__", "**/migrations/*", ".mypy_cache", "myvenv", ".venv"]
+exclude = [".git", "__pycache__", "**/migrations/*", ".mypy_cache", "myvenv", ".venv/"]
 extend-ignore = ["C101", "A002"]
 
 [build-system]
