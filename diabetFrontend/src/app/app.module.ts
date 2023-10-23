@@ -52,6 +52,8 @@ import { MealsComponent } from './meals/meals.component';
 import { SaveMealFormComponent } from './meals/save-form/save-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NoContentComponent } from './no-content/no-content.component';
+import { NoLoggedInComponent } from './no-logged-in/no-logged-in.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +83,8 @@ import { NoContentComponent } from './no-content/no-content.component';
     NavbarComponent,
     FooterComponent,
     NoContentComponent,
+    NoLoggedInComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
