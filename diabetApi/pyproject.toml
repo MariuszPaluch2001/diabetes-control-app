@@ -38,6 +38,7 @@ multi_line_output = 5
 DJANGO_SETTINGS_MODULE = "core.diabetApi.settings"
 django_find_project = false
 python_files = "test_*.py"
+testpaths = ["cooking_core"]
 filterwarnings = "ignore::DeprecationWarning:^(?!node\\.).*:"
 
 [tool.yapf]
